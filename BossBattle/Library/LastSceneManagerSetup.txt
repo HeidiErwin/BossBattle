@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Scenes/Heidi.unity
-  isLoaded: 1
-  isActive: 1
