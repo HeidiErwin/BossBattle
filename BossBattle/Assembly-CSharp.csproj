@@ -60,6 +60,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\ConfidenceBar.cs" />
+    <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/heidi/Documents/Clubs/BRGD/BossBattle/BossBattle/BossBattle/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
