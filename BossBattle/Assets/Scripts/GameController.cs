@@ -6,11 +6,14 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     private Boss boss;
+    private List<CoWorker> availableWorkers;
     [SerializeField] GameObject confidenceTooLow;
 
     void Start()
     {
         boss = GameObject.Find("Boss").GetComponent<Boss>();
+        availableWorkers = new List<CoWorker>();
+        processWorkers(); // Add all workers to the list
     }
 
     // Update is called once per frame
@@ -36,5 +39,28 @@ public class GameController : MonoBehaviour
 
     private void DisplayConfidenceTooLow() {
         confidenceTooLow.SetActive(true);
+    }
+
+    public void addWorker(CoWorker c) {
+        availableWorkers.Add(c);
+    }
+
+    // Gets an available worker and removes it from the list of workers.
+    public CoWorker getAvailableWorker() {
+        if (availableWorkers.Count == 0) {
+            return null; 
+        }
+        CoWorker ret = availableWorkers[0];
+        availableWorkers.RemoveAt(0);
+        Debug.Log(availableWorkers.Count);
+        return ret;
+    }
+
+    // Finds the list of workers in game and adds them to this manager's list
+    // of workers.
+    public void processWorkers() {
+        foreach(Transform child in GameObject.Find("Coworkers").transform) {
+            this.availableWorkers.Add(child.GetComponent<CoWorker>());
+        }
     }
 }
