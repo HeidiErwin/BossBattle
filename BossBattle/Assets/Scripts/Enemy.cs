@@ -6,10 +6,27 @@ public class Enemy : MonoBehaviour
 {
    //private float interactDist = 3;
     private float timer = 0.0f;
+    private GameObject gridTarget;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        gridTarget = GetClosestGrid();
+    }
+
+    private GameObject GetClosestGrid() {
+        GameObject[] gridElements = GameObject.FindGameObjectsWithTag("grid");
+        GameObject best = gridElements[0];
+        float bestDistance = 0;
+        for (int i = 0; i < gridElements.Length; i++)
+        {
+            float distance = (gridElements[i].transform.position - transform.position).magnitude;
+            if (distance < bestDistance) {
+                bestDistance = distance;
+                best = gridElements[i];
+            }
+        }
+        return best;
     }
 
     // Update is called once per frame
