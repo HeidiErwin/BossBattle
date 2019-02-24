@@ -4,17 +4,28 @@ using UnityEngine;
 
 public class Paper : MonoBehaviour {
 
+    public float speed = 0.5f;
 	private GameObject player;
 	private GameObject menu;
 
 	private GameController manager;
+    private GridManager gridManager;
+    private Rigidbody2D body;
+    private GameObject boss;
+
+    private List<Node> path;
+    private int pathIndex;
 
 	// Use this for initialization
 	void Start () {
 		this.player = GameObject.Find("Player");
 		this.menu = transform.Find("Menu").gameObject;
 		this.manager = GameObject.Find("GameController").GetComponent<GameController>();
-	}
+        this.gridManager = GameObject.Find("GridManager").GetComponent<GridManager>();
+        this.body = GetComponent<Rigidbody2D>();
+        this.boss = GameObject.Find("Boss");
+        this.path = gridManager.FindPath(transform.position, boss.transform.position);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -24,9 +35,26 @@ public class Paper : MonoBehaviour {
 		} else {
 			menu.SetActive(false);
 		}
+        MoveTowardsTarget();
 	}
 
-	void handleOptions() {
+    private void MoveTowardsTarget() {
+        if (pathIndex < path.Count) {
+            gridManager.DrawPath(path);
+
+            Node target = path[pathIndex];
+            Vector2 difference = target.getPosition() - (Vector2)transform.position;
+            Vector2 direction = Vector3.Normalize(difference);
+            body.velocity = direction * speed;
+            if (difference.magnitude < 0.5f) {
+                pathIndex += 1;
+            }
+        }
+    }
+
+
+
+    void handleOptions() {
 		if (Input.GetKeyDown(KeyCode.W)) {
 			workOnItYourself();
 		} else if (Input.GetKeyDown(KeyCode.A)) {

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManage : MonoBehaviour
+public class GridManager : MonoBehaviour
 {
-    private int numGridPointsX;
-    private int numGridPointsY;
-    private Node[,] grid;
+    public int numGridPointsX;
+    public int numGridPointsY;
+    public Node[,] grid;
     private List<Node> debugPath;
 
     // Start is called before the first frame update
@@ -14,21 +14,18 @@ public class GameManage : MonoBehaviour
     {
         GenerateGrid();
         List<Node> path = BreadthFirstSearch(grid[0, 0], grid[7, 1]);
-        Debug.Log("FINAL PATH");
-        for (int i = 0; i < path.Count; i++) {
-            Debug.Log(path[i]);
-        }
         debugPath = path;
     }
 
     // Update is called once per frame
     void Update()
     {
-        DrawGrid();
-        DrawPath(debugPath);
+        //DrawGrid();
+        //DrawPath(debugPath);
+
     }
 
-    void DrawPath(List<Node> path) {
+    public void DrawPath(List<Node> path) {
         for (int i = 0; i < path.Count - 1; i++) {
             Debug.DrawLine(path[i].getPosition(), path[i + 1].getPosition(), Color.blue);
         }
@@ -98,7 +95,7 @@ public class GameManage : MonoBehaviour
     }
 
 
-    List<Node> BreadthFirstSearch(Node start, Node end) {
+    public List<Node> BreadthFirstSearch(Node start, Node end) {
         Queue<Node> frontier = new Queue<Node>();
         HashSet<Node> visited = new HashSet<Node>();
         Node[,] connections = new Node[numGridPointsX, numGridPointsY];
@@ -128,6 +125,10 @@ public class GameManage : MonoBehaviour
         }
     }
 
+    public List<Node> FindPath(Vector2 start, Vector2 end) {
+        return BreadthFirstSearch(GetClosestGrid(start), GetClosestGrid(end));
+    }
+
     List<Node> makePath(Node[,] connections, Node start, Node end) {
         List<Node> path = new List<Node>();
         Node currNode = end;
@@ -145,5 +146,24 @@ public class GameManage : MonoBehaviour
         path.Add(start);
         path.Reverse();
         return path;
+    }
+
+    public Node GetClosestGrid(Vector2 position)
+    {
+        float bestDistance = 9999;
+        Node bestNode = null;
+        for (int xIndex = 0; xIndex < numGridPointsX; xIndex++)
+        {
+            for (int yIndex = 0; yIndex < numGridPointsY; yIndex++)
+            {
+                float distance = (grid[xIndex, yIndex].getPosition() - position).magnitude;
+                if (distance < bestDistance)
+                {
+                    bestDistance = distance;
+                    bestNode = grid[xIndex, yIndex];
+                }
+            }
+        }
+        return bestNode;
     }
 }

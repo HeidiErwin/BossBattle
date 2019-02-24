@@ -6,6 +6,7 @@ TagManager:
   tags:
   - grid
   - boss
+  - gridmanager
   layers:
   - Default
   - TransparentFX
