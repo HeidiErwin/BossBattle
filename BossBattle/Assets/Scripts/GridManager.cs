@@ -62,24 +62,24 @@ public class GridManager : MonoBehaviour
         numGridPointsY = (int) (yRange / gridDistance);
         grid = new Node[numGridPointsX, numGridPointsY];
 
-        for (int yIndex = 0; yIndex < numGridPointsY; yIndex++)
+        for (int y = 0; y < numGridPointsY; y++)
         {
-            for (int xIndex = 0; xIndex < numGridPointsX; xIndex++) {
-                grid[xIndex, yIndex] = new Node(xIndex, yIndex, minX + xIndex * gridDistance, minY + yIndex * gridDistance);
+            for (int x = 0; x < numGridPointsX; x++) {
+                grid[x, y] = new Node(x, y, minX + x * gridDistance, minY + y * gridDistance);
 
                 // Add connections between nodes in the graph
-                if (xIndex != 0 && IsConnection(grid[xIndex, yIndex], grid[xIndex - 1, yIndex])) {
-                    CreateConnection(grid[xIndex, yIndex], grid[xIndex - 1, yIndex]);
+                if (x != 0 && IsConnection(grid[x, y], grid[x - 1, y])) {
+                    CreateConnection(grid[x, y], grid[x - 1, y]);
                 }
-                if (yIndex != 0 && IsConnection(grid[xIndex, yIndex], grid[xIndex, yIndex - 1])) {
-                    CreateConnection(grid[xIndex, yIndex], grid[xIndex, yIndex - 1]);
+                if (y != 0 && IsConnection(grid[x, y], grid[x, y - 1])) {
+                    CreateConnection(grid[x, y], grid[x, y - 1]);
                 }
-                if (yIndex != 0 && xIndex != 0 && IsConnection(grid[xIndex, yIndex], grid[xIndex - 1, yIndex - 1])) {
-                    CreateConnection(grid[xIndex, yIndex], grid[xIndex - 1, yIndex - 1]);
+                if (y != 0 && x != 0 && IsConnection(grid[x, y], grid[x - 1, y - 1])) {
+                    CreateConnection(grid[x, y], grid[x - 1, y - 1]);
                 }
-                if (yIndex != 0 && xIndex != numGridPointsX - 1 && IsConnection(grid[xIndex, yIndex], grid[xIndex + 1, yIndex - 1]))
+                if (y != 0 && x != numGridPointsX - 1 && IsConnection(grid[x, y], grid[x + 1, y - 1]))
                 {
-                    CreateConnection(grid[xIndex, yIndex], grid[xIndex + 1, yIndex - 1]);
+                    CreateConnection(grid[x, y], grid[x + 1, y - 1]);
                 }
             }
         }
@@ -91,7 +91,20 @@ public class GridManager : MonoBehaviour
     }
 
     bool IsConnection(Node node1, Node node2) {
-        return !Physics2D.Linecast(node1.getPosition(), node2.getPosition(), LayerMask.GetMask("pathobstacle"));
+        float width = 1f;
+        Vector2 pos1 = node1.getPosition();
+        Vector2 pos2 = node2.getPosition();
+        int mask = LayerMask.GetMask("pathobstacle");
+
+        // Check if the direct path is empty
+        bool directEmpty = !Physics2D.Linecast(pos1, pos2, mask);
+
+        // Also maintain a width of emptiness between nodes
+        Vector2 perp = Vector2.Perpendicular(pos1 - pos2).normalized * width / 2;
+        bool leftEmpty = !Physics2D.Linecast(pos1 + perp, pos2 + perp, mask);
+        bool rightEmpty = !Physics2D.Linecast(pos1 - perp, pos2 - perp, mask);
+        bool diagEmpty = !Physics2D.Linecast(pos1 - perp, pos2 + perp, mask);
+        return leftEmpty && rightEmpty && directEmpty && diagEmpty;
     }
 
 
@@ -153,13 +166,11 @@ public class GridManager : MonoBehaviour
         List<Node> path = new List<Node>();
         Node currNode = end;
         int i = 0;
-        Debug.Log(start);
         while (currNode != start) {
             i++;
             if (i > 40) {
                 break;
             }
-            Debug.Log(currNode);
             path.Add(currNode);
             currNode = connections[currNode.xIndex, currNode.yIndex];
         }
