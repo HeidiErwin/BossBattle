@@ -13,7 +13,7 @@ public class GridManager : MonoBehaviour
     void Awake()
     {
         GenerateGrid();
-        List<Node> path = BreadthFirstSearch(grid[0, 0], grid[7, 1]);
+        List<Node> path = Dijkstra(grid[0, 0], grid[7, 1]);
         debugPath = path;
     }
 
@@ -95,38 +95,58 @@ public class GridManager : MonoBehaviour
     }
 
 
-    public List<Node> BreadthFirstSearch(Node start, Node end) {
-        Queue<Node> frontier = new Queue<Node>();
+    public List<Node> Dijkstra(Node start, Node end) {
+        List<Node> frontier = new List<Node>();
         HashSet<Node> visited = new HashSet<Node>();
+
+        float[,] costs = new float[numGridPointsX, numGridPointsY];
         Node[,] connections = new Node[numGridPointsX, numGridPointsY];
 
-        Debug.Log(start.neighbors);
-        frontier.Enqueue(start);
-        int i = 0;
-
+        frontier.Add(start);
+        costs[start.xIndex, start.yIndex] = 0;
         while (true) {
             if (frontier.Count == 0) {
                 return new List<Node>();
             }
-            Node root = frontier.Dequeue();
+            Node root = PopMin(frontier, costs);
             if (root == end) {
                 return makePath(connections, start, end);
             }
-            Debug.Log("looping through neighbors" + i);
             foreach (Node neighbor in root.neighbors) {
-                if (!visited.Contains(neighbor) && !frontier.Contains(neighbor)) {
-                    connections[neighbor.xIndex, neighbor.yIndex] = root;
-                    Debug.Log("enqueing..." + neighbor + " " + i);
-                    frontier.Enqueue(neighbor);
+                if (!visited.Contains(neighbor)) {
+                    float cost = costs[root.xIndex, root.yIndex] + (root.getPosition() - neighbor.getPosition()).magnitude;
+                    if (frontier.Contains(neighbor)) {
+                        if (costs[neighbor.xIndex, neighbor.yIndex] > cost) {
+                            costs[neighbor.xIndex, neighbor.yIndex] = cost;
+                            connections[neighbor.xIndex, neighbor.yIndex] = root;
+                        }
+                    } else {
+                        frontier.Add(neighbor);
+                        costs[neighbor.xIndex, neighbor.yIndex] = cost;
+                        connections[neighbor.xIndex, neighbor.yIndex] = root;
+                    }
+
                 }
             }
             visited.Add(root);
-            i += 1;
         }
     }
 
+    public Node PopMin(List<Node> nodes, float[,]costs) {
+        float minDistance = 0;
+        Node minNode = null;
+        foreach (Node node in nodes) {
+            if (minNode == null || costs[node.xIndex, node.yIndex] < minDistance) {
+                minDistance = costs[node.xIndex, node.yIndex];
+                minNode = node;
+            }
+        }
+        nodes.Remove(minNode);
+        return minNode;
+    }
+
     public List<Node> FindPath(Vector2 start, Vector2 end) {
-        return BreadthFirstSearch(GetClosestGrid(start), GetClosestGrid(end));
+        return Dijkstra(GetClosestGrid(start), GetClosestGrid(end));
     }
 
     List<Node> makePath(Node[,] connections, Node start, Node end) {

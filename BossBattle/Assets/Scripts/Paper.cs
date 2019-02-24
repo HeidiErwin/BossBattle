@@ -52,8 +52,6 @@ public class Paper : MonoBehaviour {
         }
     }
 
-
-
     void handleOptions() {
 		if (Input.GetKeyDown(KeyCode.W)) {
 			workOnItYourself();
