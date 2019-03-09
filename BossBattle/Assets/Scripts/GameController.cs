@@ -2,10 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class GameController : MonoBehaviour
 {
     private Boss boss;
+
+    private float timeBetweenSpawns = 1.0f;
+
+    private float timer = 0.0f; // Used as a counter in update
+    private List<GameObject> spawnLocations;
     private List<CoWorker> availableWorkers;
     [SerializeField] GameObject confidenceTooLow;
 
@@ -13,13 +17,25 @@ public class GameController : MonoBehaviour
     {
         boss = GameObject.Find("Boss").GetComponent<Boss>();
         availableWorkers = new List<CoWorker>();
+        this.spawnLocations = new List<GameObject>();
         processWorkers(); // Add all workers to the list
+        foreach(Transform child in GameObject.Find("SpawnLocations").transform) {
+            this.spawnLocations.Add(child.gameObject);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         // placeholder to test confidence bar
+        if (timer > 0) {
+            timer -= Time.deltaTime;
+        } else {
+            timer = timeBetweenSpawns;
+            GameObject paper = Resources.Load("Paper") as GameObject;
+            Instantiate(paper,this.spawnLocations[UnityEngine.Random.Range(0, this.spawnLocations.Count)].transform.position, Quaternion.identity);
+
+        }
         if (Input.GetKey(KeyCode.Space)) {
             boss.SetConfidence(boss.GetConfidence() - .01f);
             
@@ -63,4 +79,6 @@ public class GameController : MonoBehaviour
             this.availableWorkers.Add(child.GetComponent<CoWorker>());
         }
     }
+
+
 }
