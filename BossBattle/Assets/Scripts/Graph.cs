@@ -44,9 +44,10 @@ public class Graph : MonoBehaviour
             PlaceDotOnGraph(timeMarker.transform.position.x);
 
             Transform prevLineEnd = line.GetEnd();
-            GameObject segment = new GameObject();
-            segment.SetActive(false);
-            segment = Instantiate(Resources.Load("LineRenderer")) as GameObject;
+            //GameObject segment = new GameObject();
+            //segment.SetActive(false);
+            GameObject segment = Instantiate(Resources.Load("LineRenderer")) as GameObject;
+            //GameObject segment = new GameObject();
             line = segment.GetComponent<DrawLine>();
             line.SetStart(prevLineEnd);
             line.SetDest(mostRecentPoint.transform);
