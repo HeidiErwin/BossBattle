@@ -41,7 +41,7 @@ public class Graph : MonoBehaviour
         markerMovementThroughCurrentSection += distToMoveTimeMarkerPerSec * Time.deltaTime;
 
         if (markerMovementThroughCurrentSection >= graphWidth/numLineSegments) {
-            PlaceDotOnGraph(timeMarker.transform.position.x);
+            PlaceDotOnGraph();
 
             Transform prevLineEnd = line.GetEnd();
             //GameObject segment = new GameObject();
@@ -60,12 +60,13 @@ public class Graph : MonoBehaviour
 
         // change later, this is for testing that graph responds to finished tasks
         if (Input.GetKeyDown(KeyCode.T)) {
-            tasksFinished++;
-            PlaceDotOnGraph(timeMarker.transform.position.x);
+            PlaceDotOnGraph();
         }
     }
 
-    private void PlaceDotOnGraph(float timeMarkerX) {
+    public void PlaceDotOnGraph() {
+        tasksFinished++;
+        float timeMarkerX = timeMarker.transform.position.x;
         GameObject point = Instantiate(Resources.Load("Point")) as GameObject;
         float pointX = timeMarkerX;
         float graphBottomLeft = this.transform.position.y - graphHeight / 2;
