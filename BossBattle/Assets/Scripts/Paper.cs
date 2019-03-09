@@ -5,10 +5,10 @@ using UnityEngine;
 public class Paper : MonoBehaviour {
 
     public float speed = 0.5f;
-	private GameObject player;
-	private GameObject menu;
+    private GameObject player;
+    private GameObject menu;
 
-	private GameController manager;
+    private GameController manager;
     private GridManager gridManager;
     private Rigidbody2D body;
     private Boss boss;
@@ -16,29 +16,29 @@ public class Paper : MonoBehaviour {
     private List<Node> path;
     private int pathIndex;
 
-	public static bool busyMutex;
+    public static bool busyMutex;
 
-	// Use this for initialization
-	void Start () {
-		this.player = GameObject.Find("Player");
-		this.menu = transform.Find("Menu").gameObject;
-		this.manager = GameObject.Find("GameController").GetComponent<GameController>();
+    // Use this for initialization
+    void Start() {
+        this.player = GameObject.Find("Player");
+        this.menu = transform.Find("Menu").gameObject;
+        this.manager = GameObject.Find("GameController").GetComponent<GameController>();
         this.gridManager = GameObject.Find("GridManager").GetComponent<GridManager>();
         this.body = GetComponent<Rigidbody2D>();
         this.boss = GameObject.Find("Boss").GetComponent<Boss>();
         this.path = gridManager.FindPath(transform.position, boss.transform.position);
     }
-	
-	// Update is called once per frame
-	void Update () {
-		if (Vector3.Distance(player.transform.position,transform.position) < 1) {
-			menu.SetActive(true);
-			handleOptions();
-		} else {
-			menu.SetActive(false);
-		}
+
+    // Update is called once per frame
+    void Update() {
+        if (Vector3.Distance(player.transform.position, transform.position) < 1) {
+            menu.SetActive(true);
+            handleOptions();
+        } else {
+            menu.SetActive(false);
+        }
         MoveTowardsTarget();
-	}
+    }
 
     private void MoveTowardsTarget() {
         if (pathIndex < path.Count) {
@@ -51,77 +51,74 @@ public class Paper : MonoBehaviour {
             if (difference.magnitude < 0.5f) {
                 pathIndex += 1;
             }
+        } else {
+            body.velocity = new Vector2(0, 0);
+            sendToBoss();
         }
     }
 
     void handleOptions() {
-		if (Input.GetKeyDown(KeyCode.W)) {
-			workOnItYourself();
-		} else if (Input.GetKeyDown(KeyCode.A)) {
-			assignToNPC();
-		} else if (Input.GetKeyDown(KeyCode.S)) {
-			sendToBoss();
-		} else if (Input.GetKeyDown(KeyCode.D)){
-			denyRequest();
-		}
-	}
-
-	void workOnItYourself() {
-		Debug.Log("work");
-		if (player.GetComponent<Player>().assignTask(10)) {
-			Destroy(gameObject);
-		}
-	}
-
-	void assignToNPC() {
-		if (!CoWorker.busyMutex) {
-			CoWorker c = manager.getAvailableWorker();
-			if (c != null) {
-				if (c.assignTask(10)) {
-					CoWorker.busyMutex = true;
-					Invoke("setCoWorkerBusyMutex", 0.0001f);
-					Destroy(gameObject, 0.001f);
-				}
-			} else {
-				Debug.Log("No Workers!");
-			}
-		}
-		
-	}
-
-	void sendToBoss() {
-		if (!Boss.busyMutex && !this.boss.isBusy()) {
-			Boss.busyMutex = true;
-			this.boss.assignTask(10);
-			this.boss.SetConfidence(this.boss.GetConfidence() + 0.1f);
-			Invoke("setBossBusyMutex", 0.000f);
-			Destroy(gameObject, 0.001f);
-		}
-		
-	}
-
-	void denyRequest() {
-		if (!Paper.busyMutex) {
-			Paper.busyMutex = true;
-			Invoke("setBusyMutex", 0.000f);
-			Destroy(gameObject, 0.001f);
-		}
-		
-	}
-
-	private void setBusyMutex()
-    {
-		Paper.busyMutex = false;
+        if (Input.GetKeyDown(KeyCode.W)) {
+            workOnItYourself();
+        } else if (Input.GetKeyDown(KeyCode.A)) {
+            assignToNPC();
+        } else if (Input.GetKeyDown(KeyCode.S)) {
+            sendToBoss();
+        } else if (Input.GetKeyDown(KeyCode.D)) {
+            denyRequest();
+        }
     }
 
-	private void setBossBusyMutex()
-    {
-		Boss.busyMutex = false;
+    void workOnItYourself() {
+        Debug.Log("work");
+        if (player.GetComponent<Player>().assignTask(10)) {
+            Destroy(gameObject);
+        }
     }
 
-	private void setCoWorkerBusyMutex()
-    {
-		CoWorker.busyMutex = false;
+    void assignToNPC() {
+        if (!CoWorker.busyMutex) {
+            CoWorker c = manager.getAvailableWorker();
+            if (c != null) {
+                if (c.assignTask(10)) {
+                    CoWorker.busyMutex = true;
+                    Invoke("setCoWorkerBusyMutex", 0.0001f);
+                    Destroy(gameObject, 0.001f);
+                }
+            } else {
+                Debug.Log("No Workers!");
+            }
+        }
+    }
+
+    void sendToBoss() {
+        if (!Boss.busyMutex && !this.boss.isBusy()) {
+            Boss.busyMutex = true;
+            this.boss.assignTask(10);
+            this.boss.SetConfidence(this.boss.GetConfidence() + 0.1f);
+            Invoke("setBossBusyMutex", 0.000f);
+            Destroy(gameObject, 0.001f);
+        }
+    }
+
+    void denyRequest() {
+        if (!Paper.busyMutex) {
+            Paper.busyMutex = true;
+            Invoke("setBusyMutex", 0.000f);
+            Destroy(gameObject, 0.001f);
+        }
+    }
+
+    private void setBusyMutex() {
+        Paper.busyMutex = false;
+    }
+
+    private void setBossBusyMutex() {
+        Boss.busyMutex = false;
+    }
+
+    private void setCoWorkerBusyMutex() {
+        CoWorker.busyMutex = false;
     }
 
 }
