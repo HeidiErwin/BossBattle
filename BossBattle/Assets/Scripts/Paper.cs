@@ -35,13 +35,13 @@ public class Paper : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Vector3.Distance(player.transform.position,transform.position) < 1) {
+        MoveTowardsTarget();
+        if (Vector3.Distance(player.transform.position,transform.position) < 1) {
 			menu.SetActive(true);
 			handleOptions();
 		} else {
 			menu.SetActive(false);
 		}
-        MoveTowardsTarget();
 	}
 
     private void MoveTowardsTarget() {
@@ -61,12 +61,8 @@ public class Paper : MonoBehaviour {
                     if (!gridManager.gridOccupied[nextTarget.xIndex, nextTarget.yIndex])
                     {
                         gridManager.gridOccupied[nextTarget.xIndex, nextTarget.yIndex] = true;
-                        if (target != null)
-                        {
-                            gridManager.gridOccupied[target.xIndex, target.yIndex] = false;
-                        }
+                        gridManager.gridOccupied[target.xIndex, target.yIndex] = false;
                         pathIndex += 1;
-
                     }
                     else
                     {
@@ -84,6 +80,7 @@ public class Paper : MonoBehaviour {
     void UnlockMutex() {
         Node target = path[pathIndex];
         gridManager.gridOccupied[target.xIndex, target.yIndex] = false;
+        Destroy(gameObject);
     }
 
     void handleOptions() {

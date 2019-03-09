@@ -6,7 +6,7 @@ public class GameController : MonoBehaviour
 {
     private Boss boss;
 
-    private float timeBetweenSpawns = 1.0f;
+    private float timeBetweenSpawns = 1f;
 
     private float timer = 0.0f; // Used as a counter in update
     private List<GameObject> spawnLocations;

@@ -45,13 +45,14 @@ public class GridManager : MonoBehaviour
         {
             for (int j = 0; j < numGridPointsY; j++)
             {
+                Color color = gridOccupied[i, j] ? Color.red : Color.white;
                 Debug.DrawLine(grid[i, j].getPosition(), grid[i, j].getPosition() + new Vector2(0.1f, 0.1f), Color.white);
                 for (int k = 0; k < grid[i, j].neighbors.Count; k++)
                 {
                     //Debug.DrawLine(grid[i, j].getPosition(), grid[i, j].neighbors[k].getPosition(), Color.green);
                     Debug.DrawRay(grid[i, j].getPosition(), 
                                   (grid[i, j].neighbors[k].getPosition() - grid[i, j].getPosition()) / 4, 
-                                  Color.green);
+                                  color);
                 }
             }
         }
