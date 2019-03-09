@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     private Vector2 velocity;
     private int direction; 
-    protected float speed = 2.0f;
+    protected float speed = 5.0f;
 
     //constants
     public const int NORTH = 0;
