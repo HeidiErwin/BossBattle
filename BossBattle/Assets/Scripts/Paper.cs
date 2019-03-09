@@ -66,15 +66,17 @@ public class Paper : MonoBehaviour {
 
 	void workOnItYourself() {
 		Debug.Log("work");
-		player.GetComponent<Player>().assignTask(10);
-		Destroy(gameObject);
+		if (player.GetComponent<Player>().assignTask(10)) {
+			Destroy(gameObject);
+		}
 	}
 
 	void assignToNPC() {
 		CoWorker c = manager.getAvailableWorker();
 		if (c != null) {
-			c.assignTask(10);
-			Destroy(gameObject);
+			if (c.assignTask(10)) {
+				Destroy(gameObject);
+			}
 		} else {
 			Debug.Log("No Workers!");
 		}

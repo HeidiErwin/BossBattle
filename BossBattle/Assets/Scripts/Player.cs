@@ -66,13 +66,15 @@ public class Player : MonoBehaviour
             }
     }
 
-    public void assignTask(float length) {
+    public bool assignTask(float length) {
         if (!busy) {
             busy = true;
             timeLeft = length;
             workBar.gameObject.SetActive(true);
             workBar.maxValue = length;
             workBar.value = length;
+            return true;
         }
+        return false;
     }
 }
