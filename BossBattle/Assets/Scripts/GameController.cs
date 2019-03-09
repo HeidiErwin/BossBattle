@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 public class GameController : MonoBehaviour
 {
     private Boss boss;
@@ -12,6 +14,11 @@ public class GameController : MonoBehaviour
     private List<GameObject> spawnLocations;
     private List<CoWorker> availableWorkers;
     [SerializeField] GameObject confidenceTooLow;
+    [SerializeField] GameObject quarterRundown;
+    [SerializeField] float secondsRemaining = 15.0f; // change to 120 eventually
+    [SerializeField] Text timerText;
+    [SerializeField] Text workCountText;
+    private int workCount = 0;
 
     void Start()
     {
@@ -22,6 +29,8 @@ public class GameController : MonoBehaviour
         foreach(Transform child in GameObject.Find("SpawnLocations").transform) {
             this.spawnLocations.Add(child.gameObject);
         }
+        timerText.text = secondsRemaining.ToString();
+
     }
 
     // Update is called once per frame
@@ -34,12 +43,24 @@ public class GameController : MonoBehaviour
             timer = timeBetweenSpawns;
             GameObject paper = Resources.Load("Paper") as GameObject;
             Instantiate(paper,this.spawnLocations[UnityEngine.Random.Range(0, this.spawnLocations.Count)].transform.position, Quaternion.identity);
-
+        }
+        if (Input.GetKeyDown(KeyCode.T)) {  //placeholder to test work count
+            workCount++;
         }
         if (Input.GetKey(KeyCode.Space)) {
             boss.SetConfidence(boss.GetConfidence() - .01f);
-            
         }
+        if (secondsRemaining > 0) {
+            secondsRemaining -= Time.deltaTime;
+            timerText.text = Mathf.Round(secondsRemaining).ToString();
+        } else {
+            DisplayQuarterRundown();
+        }
+    }
+
+    private void DisplayQuarterRundown() {
+        workCountText.text = workCount.ToString();
+        quarterRundown.SetActive(true);
     }
 
     /**
