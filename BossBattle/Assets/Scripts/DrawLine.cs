@@ -24,8 +24,8 @@ public class DrawLine : MonoBehaviour
             start = graphBottomLeft.transform;
         } 
         lineRenderer.SetPosition(0, start.position);
-        lineRenderer.startWidth = .05f;
-        lineRenderer.endWidth = .05f;
+        lineRenderer.startWidth = .1f;
+        lineRenderer.endWidth = .1f;
     }
 
     void FixedUpdate()

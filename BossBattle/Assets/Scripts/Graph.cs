@@ -49,6 +49,8 @@ public class Graph : MonoBehaviour
             GameObject segment = Instantiate(Resources.Load("LineRenderer")) as GameObject;
             //GameObject segment = new GameObject();
             line = segment.GetComponent<DrawLine>();
+
+            Debug.Log(prevLineEnd);
             line.SetStart(prevLineEnd);
             line.SetDest(mostRecentPoint.transform);
             segment.SetActive(true);

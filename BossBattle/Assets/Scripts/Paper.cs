@@ -5,6 +5,8 @@ using UnityEngine;
 public class Paper : MonoBehaviour {
 
     public float speed = 0.5f;
+
+	public float workTime;
 	private GameObject player;
 	private GameObject menu;
 
@@ -68,7 +70,7 @@ public class Paper : MonoBehaviour {
 
 	void workOnItYourself() {
 		Debug.Log("work");
-		if (player.GetComponent<Player>().assignTask(10)) {
+		if (player.GetComponent<Player>().assignTask(workTime)) {
 			Destroy(gameObject);
 		}
 	}
@@ -77,7 +79,7 @@ public class Paper : MonoBehaviour {
 		if (!CoWorker.busyMutex) {
 			CoWorker c = manager.getAvailableWorker();
 			if (c != null) {
-				if (c.assignTask(10)) {
+				if (c.assignTask(workTime)) {
 					CoWorker.busyMutex = true;
 					Invoke("setCoWorkerBusyMutex", 0.0001f);
 					Destroy(gameObject, 0.001f);
@@ -92,7 +94,7 @@ public class Paper : MonoBehaviour {
 	void sendToBoss() {
 		if (!Boss.busyMutex && !this.boss.isBusy()) {
 			Boss.busyMutex = true;
-			this.boss.assignTask(10);
+			this.boss.assignTask(workTime);
 			this.boss.SetConfidence(this.boss.GetConfidence() + 0.1f);
 			Invoke("setBossBusyMutex", 0.000f);
 			Destroy(gameObject, 0.001f);
