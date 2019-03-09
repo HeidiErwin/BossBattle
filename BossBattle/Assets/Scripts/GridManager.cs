@@ -7,6 +7,7 @@ public class GridManager : MonoBehaviour
     public int numGridPointsX;
     public int numGridPointsY;
     public Node[,] grid;
+    public bool[,] gridOccupied;
     private List<Node> debugPath;
 
     // Start is called before the first frame update
@@ -15,12 +16,19 @@ public class GridManager : MonoBehaviour
         GenerateGrid();
         List<Node> path = Dijkstra(grid[0, 0], grid[7, 1]);
         debugPath = path;
+        gridOccupied = new bool[numGridPointsX, numGridPointsY];
+        for (int i = 0; i < numGridPointsX; i++) {
+            for (int j = 0; j < numGridPointsY; j ++) {
+                gridOccupied[i, j] = false;
+            }
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        //DrawGrid();
+        DrawGrid();
         //DrawPath(debugPath);
 
     }
@@ -50,10 +58,10 @@ public class GridManager : MonoBehaviour
     }
 
     void GenerateGrid() {
-        float minX = -8;
-        float maxX = 8;
+        float minX = -9;
+        float maxX = 11;
         float minY = -5;
-        float maxY = 5;
+        float maxY = 7;
         float xRange = maxX - minX;
         float yRange = maxY - minY;
 

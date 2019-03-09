@@ -9,11 +9,13 @@ public class Paper : MonoBehaviour {
 	public float workTime;
 	private GameObject player;
 	private GameObject menu;
+    private bool hasGridMutex;
 
 	private GameController manager;
     private GridManager gridManager;
     private Rigidbody2D body;
     private Boss boss;
+    private Node prevTarget;
 
     private List<Node> path;
     private int pathIndex;
@@ -50,9 +52,21 @@ public class Paper : MonoBehaviour {
             Vector2 difference = target.getPosition() - (Vector2)transform.position;
             Vector2 direction = Vector3.Normalize(difference);
             body.velocity = direction * speed;
+            Debug.Log(direction * speed);
+
             if (difference.magnitude < 0.5f) {
-                pathIndex += 1;
-            }
+                if (!gridManager.gridOccupied[target.xIndex, target.yIndex]) {
+                    gridManager.gridOccupied[target.xIndex, target.yIndex] = true;
+                    if (prevTarget != null)
+                    {
+                        gridManager.gridOccupied[prevTarget.xIndex, prevTarget.yIndex] = false;
+                    }
+                    prevTarget = target;
+                    pathIndex += 1;
+                } else {
+                    body.velocity = Vector2.zero;
+                }
+            } 
         }
     }
 
