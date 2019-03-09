@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Boss : MonoBehaviour
-{
+public class Boss : MonoBehaviour {
     [SerializeField] private float confidence = 1.0f; // confidence ranges from 0.0.to 1.0
     [SerializeField] private int tasksHandling; // tracks number of things the boss is currently working on
     [SerializeField] private int numTasksCapableOfHandling; // max number of tasks boss can handle before being overwhelmed
@@ -13,6 +12,7 @@ public class Boss : MonoBehaviour
 
     private bool busy;
     private float timeLeft = 0.0f;
+    private float bufferTime = 8.0f;
     public static bool busyMutex = false;
     private Slider workBar;
 
@@ -20,10 +20,10 @@ public class Boss : MonoBehaviour
         this.workBar = transform.Find("WorkBar").Find("Slider").gameObject.GetComponent<Slider>();
     }
 
-    void Update()
-    {
-        
+    void Update() {
+
         if (timeLeft < 0 && busy) {
+            tasksHandling--;
             this.busy = false;
         } else if (timeLeft > 0) {
             timeLeft -= Time.deltaTime;
@@ -31,7 +31,10 @@ public class Boss : MonoBehaviour
         }
 
         if (!busy) {
-            SetConfidence(confidence - .001f);
+            bufferTime -= Time.deltaTime;
+            if (bufferTime < 0) {
+                SetConfidence(confidence - .001f);
+            }
         }
 
         if (tasksHandling > numTasksCapableOfHandling) {
@@ -64,6 +67,8 @@ public class Boss : MonoBehaviour
             workBar.maxValue = length;
             workBar.value = length;
             this.timeLeft = length;
+            this.bufferTime = 8.0f;
+            tasksHandling++;
             return true;
         }
         return false;
