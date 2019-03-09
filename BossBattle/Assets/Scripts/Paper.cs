@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Paper : MonoBehaviour {
 
-    public float speed = 0.5f;
+    public float speed = 10f;
 
 	public float workTime;
 	private GameObject player;
@@ -55,19 +55,35 @@ public class Paper : MonoBehaviour {
             Debug.Log(direction * speed);
 
             if (difference.magnitude < 0.5f) {
-                if (!gridManager.gridOccupied[target.xIndex, target.yIndex]) {
-                    gridManager.gridOccupied[target.xIndex, target.yIndex] = true;
-                    if (prevTarget != null)
+                if (pathIndex + 1 < path.Count) {
+                    Node nextTarget = path[pathIndex + 1];
+
+                    if (!gridManager.gridOccupied[nextTarget.xIndex, nextTarget.yIndex])
                     {
-                        gridManager.gridOccupied[prevTarget.xIndex, prevTarget.yIndex] = false;
+                        gridManager.gridOccupied[nextTarget.xIndex, nextTarget.yIndex] = true;
+                        if (target != null)
+                        {
+                            gridManager.gridOccupied[target.xIndex, target.yIndex] = false;
+                        }
+                        pathIndex += 1;
+
                     }
-                    prevTarget = target;
-                    pathIndex += 1;
+                    else
+                    {
+                        body.velocity = Vector2.zero;
+                    }
                 } else {
-                    body.velocity = Vector2.zero;
+                    gridManager.gridOccupied[target.xIndex, target.yIndex] = false;
+                    sendToBoss();
+                    return;
                 }
             } 
         }
+    }
+
+    void UnlockMutex() {
+        Node target = path[pathIndex];
+        gridManager.gridOccupied[target.xIndex, target.yIndex] = false;
     }
 
     void handleOptions() {
@@ -85,18 +101,20 @@ public class Paper : MonoBehaviour {
 	void workOnItYourself() {
 		Debug.Log("work");
 		if (player.GetComponent<Player>().assignTask(workTime)) {
-			Destroy(gameObject);
+            UnlockMutex();
+            Destroy(gameObject);
 		}
 	}
 
 	void assignToNPC() {
 		if (!CoWorker.busyMutex) {
-			CoWorker c = manager.getAvailableWorker();
+            CoWorker c = manager.getAvailableWorker();
 			if (c != null) {
 				if (c.assignTask(workTime)) {
 					CoWorker.busyMutex = true;
 					Invoke("setCoWorkerBusyMutex", 0.0001f);
-					Destroy(gameObject, 0.001f);
+                    UnlockMutex();
+                    Destroy(gameObject, 0.001f);
 				}
 			} else {
 				Debug.Log("No Workers!");
@@ -106,12 +124,14 @@ public class Paper : MonoBehaviour {
 	}
 
 	void sendToBoss() {
+        Debug.Log("Sending to boss");
 		if (!Boss.busyMutex && !this.boss.isBusy()) {
 			Boss.busyMutex = true;
 			this.boss.assignTask(workTime);
 			this.boss.SetConfidence(this.boss.GetConfidence() + 0.1f);
 			Invoke("setBossBusyMutex", 0.000f);
-			Destroy(gameObject, 0.001f);
+            UnlockMutex();
+            Destroy(gameObject, 0.001f);
 		}
 		
 	}
@@ -120,7 +140,8 @@ public class Paper : MonoBehaviour {
 		if (!Paper.busyMutex) {
 			Paper.busyMutex = true;
 			Invoke("setBusyMutex", 0.000f);
-			Destroy(gameObject, 0.001f);
+            UnlockMutex();
+            Destroy(gameObject, 0.001f);
 		}
 		
 	}
