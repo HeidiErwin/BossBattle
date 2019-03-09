@@ -15,7 +15,8 @@ public class ConfidenceBar : MonoBehaviour
 
     public void SetConfidence(float conf) {
         confidence = conf;
-        bar.localScale = new Vector3(conf, 1f);
+        Debug.Log(confidence);
+        bar.localScale = new Vector3(confidence, 1f);
     }
 
     public float GetConfidence() {

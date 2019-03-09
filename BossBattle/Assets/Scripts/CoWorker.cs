@@ -8,6 +8,7 @@ public class CoWorker : MonoBehaviour
     private float timeLeft = 0.0f; // Time left until this worker finishes a task.
     private bool busy = false;
     private Slider workBar;
+    public static bool busyMutex = false;
 
     private GameController manager;
 

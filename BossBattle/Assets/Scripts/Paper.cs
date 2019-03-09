@@ -11,10 +11,12 @@ public class Paper : MonoBehaviour {
 	private GameController manager;
     private GridManager gridManager;
     private Rigidbody2D body;
-    private GameObject boss;
+    private Boss boss;
 
     private List<Node> path;
     private int pathIndex;
+
+	public static bool busyMutex;
 
 	// Use this for initialization
 	void Start () {
@@ -23,7 +25,7 @@ public class Paper : MonoBehaviour {
 		this.manager = GameObject.Find("GameController").GetComponent<GameController>();
         this.gridManager = GameObject.Find("GridManager").GetComponent<GridManager>();
         this.body = GetComponent<Rigidbody2D>();
-        this.boss = GameObject.Find("Boss");
+        this.boss = GameObject.Find("Boss").GetComponent<Boss>();
         this.path = gridManager.FindPath(transform.position, boss.transform.position);
     }
 	
@@ -72,25 +74,54 @@ public class Paper : MonoBehaviour {
 	}
 
 	void assignToNPC() {
-		CoWorker c = manager.getAvailableWorker();
-		if (c != null) {
-			if (c.assignTask(10)) {
-				Destroy(gameObject);
+		if (!CoWorker.busyMutex) {
+			CoWorker c = manager.getAvailableWorker();
+			if (c != null) {
+				if (c.assignTask(10)) {
+					CoWorker.busyMutex = true;
+					Invoke("setCoWorkerBusyMutex", 0.0001f);
+					Destroy(gameObject, 0.001f);
+				}
+			} else {
+				Debug.Log("No Workers!");
 			}
-		} else {
-			Debug.Log("No Workers!");
 		}
 		
 	}
 
 	void sendToBoss() {
-		Debug.Log("send");
-		Destroy(gameObject);
+		if (!Boss.busyMutex && !this.boss.isBusy()) {
+			Boss.busyMutex = true;
+			this.boss.assignTask(10);
+			this.boss.SetConfidence(this.boss.GetConfidence() + 0.1f);
+			Invoke("setBossBusyMutex", 0.000f);
+			Destroy(gameObject, 0.001f);
+		}
+		
 	}
 
 	void denyRequest() {
-		Debug.Log("deny");
-		Destroy(gameObject);
+		if (!Paper.busyMutex) {
+			Paper.busyMutex = true;
+			Invoke("setBusyMutex", 0.000f);
+			Destroy(gameObject, 0.001f);
+		}
+		
 	}
+
+	private void setBusyMutex()
+    {
+		Paper.busyMutex = false;
+    }
+
+	private void setBossBusyMutex()
+    {
+		Boss.busyMutex = false;
+    }
+
+	private void setCoWorkerBusyMutex()
+    {
+		CoWorker.busyMutex = false;
+    }
 
 }

@@ -15,7 +15,6 @@ public class Node
         this.y = y;
         this.xIndex = xIndex;
         this.yIndex = yIndex;
-        Debug.Log("Inside constructor");
         neighbors = new List<Node>();
     }
 
