@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour
     private List<CoWorker> availableWorkers;
     [SerializeField] GameObject confidenceTooLow;
     [SerializeField] GameObject quarterRundown;
-    [SerializeField] float secondsRemaining = 15.0f; // change to 120 eventually
+    [SerializeField] float secondsRemaining = 120.0f; // change to 120 eventually
     [SerializeField] Text timerText;
     [SerializeField] Text workCountText;
     private int workCount = 0;
