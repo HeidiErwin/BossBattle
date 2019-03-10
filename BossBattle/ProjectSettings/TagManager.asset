@@ -44,8 +44,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: New Layer
+    uniqueID: 2467942249
+    locked: 0
   - name: Background
     uniqueID: 799581733
+    locked: 0
+  - name: Cubicle Back
+    uniqueID: 1507587781
     locked: 0
   - name: Default
     uniqueID: 39698339
@@ -55,4 +61,10 @@ TagManager:
     locked: 0
   - name: Dots
     uniqueID: 7685519
+    locked: 0
+  - name: Characters
+    uniqueID: 497239071
+    locked: 0
+  - name: Cubicle Front
+    uniqueID: 1548079553
     locked: 0

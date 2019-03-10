@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     private Vector2 velocity;
     private int direction; 
     protected float speed = 5.0f;
+    private SpriteRenderer spriteRenderer;
 
     //constants
     public const int NORTH = 0;
@@ -18,10 +19,15 @@ public class Player : MonoBehaviour
     private float timeLeft = 0f;
     private bool busy = false;
 
+    [SerializeField] private Sprite front;
+    [SerializeField] private Sprite right;
+    [SerializeField] private Sprite back;
+    [SerializeField] private Sprite left;
 
     // Start is called before the first frame update
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         workBar = transform.Find("WorkBar").Find("Slider").gameObject.GetComponent<Slider>();
     }
 
@@ -38,8 +44,6 @@ public class Player : MonoBehaviour
             GetInput();
             transform.Translate(velocity * speed * Time.deltaTime);
         }
-
-        
     }
 
     void GetInput() {
@@ -47,22 +51,26 @@ public class Player : MonoBehaviour
 
             if (Input.GetKey(KeyCode.UpArrow)) {
                 direction = NORTH;
+                spriteRenderer.sprite = back;
                 velocity += Vector2.up;
             }
 
             if (Input.GetKey(KeyCode.RightArrow)) {
                 direction = EAST;
+                spriteRenderer.sprite = right;
                 velocity += Vector2.right;
             }
 
             if (Input.GetKey(KeyCode.DownArrow)) {
                 direction = SOUTH;
-                velocity += Vector2.down;
+                spriteRenderer.sprite = front;
+            velocity += Vector2.down;
             }
 
             if (Input.GetKey(KeyCode.LeftArrow)) {
                 direction = WEST;
-                velocity += Vector2.left;
+                spriteRenderer.sprite = left;
+            velocity += Vector2.left;
             }
     }
 
