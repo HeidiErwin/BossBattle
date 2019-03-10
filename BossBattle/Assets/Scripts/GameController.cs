@@ -18,7 +18,7 @@ public class GameController : MonoBehaviour
     [SerializeField] float secondsRemaining = 120.0f; // change to 120 eventually
     [SerializeField] Text timerText;
     [SerializeField] Text workCountText;
-    private int workCount = 0;
+    private int workCount = 2;
 
     void Start()
     {
