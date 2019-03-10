@@ -19,6 +19,7 @@ public class Paper : MonoBehaviour {
 
     private List<Node> path;
     private int pathIndex;
+    private Graph graph;
 
 	public static bool busyMutex;
 
@@ -31,17 +32,18 @@ public class Paper : MonoBehaviour {
         this.body = GetComponent<Rigidbody2D>();
         this.boss = GameObject.Find("Boss").GetComponent<Boss>();
         this.path = gridManager.FindPath(transform.position, boss.transform.position);
+        this.graph = GameObject.Find("Graph").GetComponent<Graph>();
     }
-	
-	// Update is called once per frame
-	void Update () {
-		if (Vector3.Distance(player.transform.position,transform.position) < 1) {
+
+    // Update is called once per frame
+    void Update () {
+        MoveTowardsTarget();
+        if (Vector3.Distance(player.transform.position,transform.position) < 1) {
 			menu.SetActive(true);
 			handleOptions();
 		} else {
 			menu.SetActive(false);
 		}
-        MoveTowardsTarget();
 	}
 
     private void MoveTowardsTarget() {
@@ -61,12 +63,8 @@ public class Paper : MonoBehaviour {
                     if (!gridManager.gridOccupied[nextTarget.xIndex, nextTarget.yIndex])
                     {
                         gridManager.gridOccupied[nextTarget.xIndex, nextTarget.yIndex] = true;
-                        if (target != null)
-                        {
-                            gridManager.gridOccupied[target.xIndex, target.yIndex] = false;
-                        }
+                        gridManager.gridOccupied[target.xIndex, target.yIndex] = false;
                         pathIndex += 1;
-
                     }
                     else
                     {
@@ -102,6 +100,7 @@ public class Paper : MonoBehaviour {
 		Debug.Log("work");
 		if (player.GetComponent<Player>().assignTask(workTime)) {
             UnlockMutex();
+            graph.PlaceDotOnGraph();
             Destroy(gameObject);
 		}
 	}
@@ -114,6 +113,7 @@ public class Paper : MonoBehaviour {
 					CoWorker.busyMutex = true;
 					Invoke("setCoWorkerBusyMutex", 0.0001f);
                     UnlockMutex();
+                    graph.PlaceDotOnGraph();
                     Destroy(gameObject, 0.001f);
 				}
 			} else {
@@ -131,6 +131,7 @@ public class Paper : MonoBehaviour {
 			this.boss.SetConfidence(this.boss.GetConfidence() + 0.1f);
 			Invoke("setBossBusyMutex", 0.000f);
             UnlockMutex();
+            graph.PlaceDotOnGraph();
             Destroy(gameObject, 0.001f);
 		}
 		
