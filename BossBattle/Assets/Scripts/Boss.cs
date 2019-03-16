@@ -53,6 +53,7 @@ public class Boss : MonoBehaviour {
 
         }
         if (confidence >= 1.0f) {
+            confidence = 1.0f;
             confidenceBar.SetConfidence(1.0f);
         }
         if (confidence <= 0)

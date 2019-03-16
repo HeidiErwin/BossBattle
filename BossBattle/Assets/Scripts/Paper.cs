@@ -135,7 +135,7 @@ public class Paper : MonoBehaviour {
 			Boss.busyMutex = true;
 			this.boss.assignTask(workTime);
             boss.SetConfidence(boss.GetConfidence() + 0.1f);
-            Invoke("setBossBusyMutex", 0.000f);
+            Invoke("setBossBusyMutex", 0.0001f);
             UnlockMutex();
             graph.PlaceDotOnGraph();
             Destroy(gameObject, 0.001f);
