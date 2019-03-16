@@ -83,6 +83,7 @@ public class Boss : MonoBehaviour {
     }
 
     public bool assignTask(float length) {
+        return true;
 
         Debug.Log("assigning task with length = " + length);
         workQueueTimes.Add(length);

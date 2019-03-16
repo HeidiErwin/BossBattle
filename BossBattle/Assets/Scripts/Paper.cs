@@ -67,9 +67,11 @@ public class Paper : MonoBehaviour {
                         gridManager.gridOccupied[target.xIndex, target.yIndex] = false;
                         pathIndex += 1;
                     }
-                    else
+                    else  // Does not have lock
                     {
+                        this.path = gridManager.FindPath(transform.position, boss.transform.position);
                         body.velocity = Vector2.zero;
+                        pathIndex = 0;
                     }
                 } else {
                     gridManager.gridOccupied[target.xIndex, target.yIndex] = false;
