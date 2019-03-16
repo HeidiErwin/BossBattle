@@ -57,7 +57,7 @@ public class Paper : MonoBehaviour {
             Vector2 direction = Vector3.Normalize(difference);
             body.velocity = direction * speed;
 
-            if (difference.magnitude < 0.5f) {
+            if (difference.magnitude < 0.05f) {
                 if (pathIndex + 1 < path.Count) {
                     Node nextTarget = path[pathIndex + 1];
 
@@ -67,12 +67,15 @@ public class Paper : MonoBehaviour {
                         gridManager.gridOccupied[target.xIndex, target.yIndex] = false;
                         pathIndex += 1;
                     }
-                    else
+                    else  // Does not have lock
                     {
+                        this.path = gridManager.FindPath(transform.position, boss.transform.position);
                         body.velocity = Vector2.zero;
+                        pathIndex = 0;
                     }
                 } else {
-                    gridManager.gridOccupied[target.xIndex, target.yIndex] = false;
+                    UnlockMutex();
+                    body.velocity = Vector2.zero;
                     sendToBoss();
                     return;
                 }
@@ -91,7 +94,9 @@ public class Paper : MonoBehaviour {
 		} else if (Input.GetKeyDown(KeyCode.A)) {
 			assignToNPC();
 		} else if (Input.GetKeyDown(KeyCode.S)) {
-			sendToBoss();
+            if (!boss.queueFull()) {
+                sendToBoss();
+            }
 		} else if (Input.GetKeyDown(KeyCode.D)){
 			denyRequest();
 		}
@@ -130,11 +135,14 @@ public class Paper : MonoBehaviour {
 			Boss.busyMutex = true;
 			this.boss.assignTask(workTime);
             boss.SetConfidence(boss.GetConfidence() + 0.1f);
-            Invoke("setBossBusyMutex", 0.000f);
+            Invoke("setBossBusyMutex", 0.0001f);
             UnlockMutex();
             graph.PlaceDotOnGraph();
             Destroy(gameObject, 0.001f);
-		}
+        }
+        if (boss.queueFull()) {
+            boss.SetConfidence(boss.GetConfidence() - 0.001f);
+        }
 		
 	}
 

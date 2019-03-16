@@ -59,14 +59,14 @@ public class GridManager : MonoBehaviour
     }
 
     void GenerateGrid() {
-        float minX = -9;
-        float maxX = 11;
-        float minY = -5;
-        float maxY = 7;
+        float minX = -8;
+        float maxX = 10;
+        float minY = -3.8f;
+        float maxY = 6.2f;
         float xRange = maxX - minX;
         float yRange = maxY - minY;
 
-        float gridDistance = 1.3f;
+        float gridDistance = 1.35f;
         numGridPointsX = (int) (xRange / gridDistance);
         numGridPointsY = (int) (yRange / gridDistance);
         grid = new Node[numGridPointsX, numGridPointsY];
@@ -156,13 +156,19 @@ public class GridManager : MonoBehaviour
 
     public Node PopMin(List<Node> nodes, float[,]costs) {
         float minDistance = 0;
-        Node minNode = null;
+
+        List<Node> minNodes = new List<Node>();
         foreach (Node node in nodes) {
-            if (minNode == null || costs[node.xIndex, node.yIndex] < minDistance) {
+            if (minNodes.Count == 0 || Mathf.Abs(costs[node.xIndex, node.yIndex] - minDistance) < 50.0f)
+            {
+                minNodes.Add(node);
+            } else if (costs[node.xIndex, node.yIndex] < minDistance) {
                 minDistance = costs[node.xIndex, node.yIndex];
-                minNode = node;
-            }
+                minNodes = new List<Node>();
+                minNodes.Add(node);
+            } 
         }
+        Node minNode = minNodes[Random.Range(0, minNodes.Count)];
         nodes.Remove(minNode);
         return minNode;
     }

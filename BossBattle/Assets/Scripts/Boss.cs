@@ -21,15 +21,12 @@ public class Boss : MonoBehaviour {
     }
 
     void Update() {
-        Debug.Log("time left = " + timeLeft);
-
         if (timeLeft <= 0 && isBusy()) {
             workQueueTimes.Remove(workQueueTimes[0]);
 
             if (isBusy()) {
                 this.bufferTime = 8.0f;
                 startWorkingOnTask();
-
             }
         } else if (timeLeft > 0) {
             timeLeft -= Time.deltaTime;
@@ -53,12 +50,15 @@ public class Boss : MonoBehaviour {
         if (confidence >= 0) {
             confidence = conf;
             confidenceBar.SetConfidence(conf);
-            if (confidence <= 0) {
-                gameController.LoseState(0);
-            }
+
         }
         if (confidence >= 1.0f) {
+            confidence = 1.0f;
             confidenceBar.SetConfidence(1.0f);
+        }
+        if (confidence <= 0)
+        {
+            gameController.LoseState(0);
         }
     }
 
@@ -71,7 +71,7 @@ public class Boss : MonoBehaviour {
     }
 
     public bool queueFull() {
-        return this.workQueueTimes.Count == numTasksCapableOfHandling;
+        return this.workQueueTimes.Count >= numTasksCapableOfHandling;
     }
 
     public void startWorkingOnTask() {
@@ -83,7 +83,6 @@ public class Boss : MonoBehaviour {
     }
 
     public bool assignTask(float length) {
-
         Debug.Log("assigning task with length = " + length);
         workQueueTimes.Add(length);
 
