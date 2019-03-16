@@ -3102,7 +3102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   confidence: 1
-  tasksHandling: 0
+  tasksHandling: 3
   numTasksCapableOfHandling: 1
   confidenceBar: {fileID: 1597226566}
   gameController: {fileID: 1054719979}
