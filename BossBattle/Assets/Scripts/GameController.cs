@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour
 {
     private Boss boss;
 
-    private float timeBetweenSpawns = 0.3f;
+    private float timeBetweenSpawns = 1f;
 
     private float timer = 0.0f; // Used as a counter in update
     private List<GameObject> spawnLocations;
@@ -44,6 +44,7 @@ public class GameController : MonoBehaviour
             timer = timeBetweenSpawns;
             //GameObject paper = Resources.Load("Paper/Paper" + UnityEngine.Random.Range(0, 3)) as GameObject;
             UnityEngine.Object paper = papers[UnityEngine.Random.Range(0, papers.Length)];
+            //UnityEngine.Object paper = papers[0];
             Instantiate(paper, this.spawnLocations[UnityEngine.Random.Range(0, this.spawnLocations.Count)].transform.position, Quaternion.identity);
         }
         if (Input.GetKeyDown(KeyCode.T)) {  //placeholder to test work count
