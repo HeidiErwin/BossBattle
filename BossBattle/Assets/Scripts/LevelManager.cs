@@ -5,19 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public void QuitGame() {
+        Application.Quit();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void BackToTitle() {
+        SceneManager.LoadScene("Title");
     }
 
     public void StartGame() {
-        //SceneManager.LoadScene("Heidi");
+        SceneManager.LoadScene("Heidi");
+    }
+
+    public void ShowCredits() {
+        SceneManager.LoadScene("Credits");
     }
 }
