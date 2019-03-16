@@ -21,6 +21,8 @@ public class Paper : MonoBehaviour {
     private int pathIndex;
     private Graph graph;
 
+    public List<Sprite> sprites;
+
 	public static bool busyMutex;
 
 	// Use this for initialization
@@ -54,7 +56,6 @@ public class Paper : MonoBehaviour {
             Vector2 difference = target.getPosition() - (Vector2)transform.position;
             Vector2 direction = Vector3.Normalize(difference);
             body.velocity = direction * speed;
-            Debug.Log(direction * speed);
 
             if (difference.magnitude < 0.5f) {
                 if (pathIndex + 1 < path.Count) {
@@ -125,11 +126,11 @@ public class Paper : MonoBehaviour {
 
 	void sendToBoss() {
         Debug.Log("Sending to boss");
-		if (!Boss.busyMutex && !this.boss.isBusy()) {
+		if (!Boss.busyMutex && !this.boss.queueFull()) {
 			Boss.busyMutex = true;
 			this.boss.assignTask(workTime);
-			this.boss.SetConfidence(this.boss.GetConfidence() + 0.1f);
-			Invoke("setBossBusyMutex", 0.000f);
+            boss.SetConfidence(boss.GetConfidence() + 0.1f);
+            Invoke("setBossBusyMutex", 0.000f);
             UnlockMutex();
             graph.PlaceDotOnGraph();
             Destroy(gameObject, 0.001f);

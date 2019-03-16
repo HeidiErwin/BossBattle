@@ -95,7 +95,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  workTime: 1
+  workTime: 5
+  sprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!50 &1477133509129105050
 Rigidbody2D:
   serializedVersion: 4

@@ -10,27 +10,33 @@ public class Boss : MonoBehaviour {
     [SerializeField] private ConfidenceBar confidenceBar;
     [SerializeField] private GameController gameController;
 
-    private bool busy;
     private float timeLeft = 0.0f;
     private float bufferTime = 8.0f;
     public static bool busyMutex = false;
     private Slider workBar;
+    private List<float> workQueueTimes = new List<float>();
 
     public void Start() {
         this.workBar = transform.Find("WorkBar").Find("Slider").gameObject.GetComponent<Slider>();
     }
 
     void Update() {
+        Debug.Log("time left = " + timeLeft);
 
-        if (timeLeft < 0 && busy) {
-            tasksHandling--;
-            this.busy = false;
+        if (timeLeft <= 0 && isBusy()) {
+            workQueueTimes.Remove(workQueueTimes[0]);
+
+            if (isBusy()) {
+                this.bufferTime = 8.0f;
+                startWorkingOnTask();
+
+            }
         } else if (timeLeft > 0) {
             timeLeft -= Time.deltaTime;
             workBar.value = timeLeft;
         }
 
-        if (!busy) {
+        if (!isBusy()) {
             bufferTime -= Time.deltaTime;
             if (bufferTime < 0) {
                 SetConfidence(confidence - .001f);
@@ -51,6 +57,9 @@ public class Boss : MonoBehaviour {
                 gameController.LoseState(0);
             }
         }
+        if (confidence >= 1.0f) {
+            confidenceBar.SetConfidence(1.0f);
+        }
     }
 
     public float GetConfidence() {
@@ -58,19 +67,29 @@ public class Boss : MonoBehaviour {
     }
 
     public bool isBusy() {
-        return this.busy;
+        return this.workQueueTimes.Count > 0;
+    }
+
+    public bool queueFull() {
+        return this.workQueueTimes.Count == numTasksCapableOfHandling;
+    }
+
+    public void startWorkingOnTask() {
+        Debug.Log("Started working on task with time = " + workQueueTimes[0]);
+        timeLeft = workQueueTimes[0];
+
+        workBar.maxValue = timeLeft;
+        workBar.value = timeLeft;
     }
 
     public bool assignTask(float length) {
-        if (!busy) {
-            busy = true;
-            workBar.maxValue = length;
-            workBar.value = length;
-            this.timeLeft = length;
-            this.bufferTime = 8.0f;
-            tasksHandling++;
-            return true;
+
+        Debug.Log("assigning task with length = " + length);
+        workQueueTimes.Add(length);
+
+        if (workQueueTimes.Count == 1) {
+            startWorkingOnTask();
         }
-        return false;
+        return true;
     }
 }
