@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
     }
 
     public void StartGame() {
-        SceneManager.LoadScene("Heidi");
+        SceneManager.LoadScene("PlaytestingScene");
     }
 
     public void ShowCredits() {

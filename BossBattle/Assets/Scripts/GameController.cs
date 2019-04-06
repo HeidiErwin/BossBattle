@@ -8,18 +8,22 @@ public class GameController : MonoBehaviour
 {
     private Boss boss;
 
-    private float timeBetweenSpawns = 1f;
+    [SerializeField] private float timeBetweenSpawns = 1f;
 
     private float timer = 0.0f; // Used as a counter in update
     private List<GameObject> spawnLocations;
     private List<CoWorker> availableWorkers;
     [SerializeField] GameObject confidenceTooLow;
     [SerializeField] GameObject quarterRundown;
-    [SerializeField] float secondsRemaining = 120.0f; // change to 120 eventually
+    [SerializeField] float secondsRemaining; 
     [SerializeField] Text timerText;
     [SerializeField] Text workCountText;
-    private int workCount = 2;
+    private int workCount = 0;
+    private int quarter = 1;
     private UnityEngine.Object[] papers;
+    private int state = PLAYING_GAME; // 0 = playing game, 1 = showing quarter rundown
+    private const int PLAYING_GAME = 0;
+    private const int DISPLAYING_RESULTS = 1;
 
     void Start()
     {
@@ -34,36 +38,46 @@ public class GameController : MonoBehaviour
         papers = Resources.LoadAll("Paper");
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // placeholder to test confidence bar
-        if (timer > 0) {
-            timer -= Time.deltaTime;
-        } else {
-            timer = timeBetweenSpawns;
-            //GameObject paper = Resources.Load("Paper/Paper" + UnityEngine.Random.Range(0, 3)) as GameObject;
-            UnityEngine.Object paper = papers[UnityEngine.Random.Range(0, papers.Length)];
-            //UnityEngine.Object paper = papers[0];
-            Instantiate(paper, this.spawnLocations[UnityEngine.Random.Range(0, this.spawnLocations.Count)].transform.position, Quaternion.identity);
-        }
-        if (Input.GetKeyDown(KeyCode.T)) {  //placeholder to test work count
-            workCount++;
-        }
-        if (Input.GetKey(KeyCode.Space)) {
-            boss.SetConfidence(boss.GetConfidence() - .01f);
-        }
-        if (secondsRemaining > 0) {
-            secondsRemaining -= Time.deltaTime;
-            timerText.text = Mathf.Round(secondsRemaining).ToString();
-        } else {
-            DisplayQuarterRundown();
+        if (state == PLAYING_GAME) {
+            if (timer > 0) {
+                timer -= Time.deltaTime;
+            } else {
+                timer = timeBetweenSpawns;
+                //GameObject paper = Resources.Load("Paper/Paper" + UnityEngine.Random.Range(0, 3)) as GameObject;
+                UnityEngine.Object paper = papers[UnityEngine.Random.Range(0, papers.Length)];
+                //UnityEngine.Object paper = papers[0];
+                Instantiate(paper, this.spawnLocations[UnityEngine.Random.Range(0, this.spawnLocations.Count)].transform.position, Quaternion.identity);
+            }
+            if (secondsRemaining > 0) {
+                secondsRemaining -= Time.deltaTime;
+                timerText.text = Mathf.Round(secondsRemaining).ToString();
+            } else {
+                Debug.Log("time's up");
+                DisplayQuarterRundown();
+            }
+        } else if (state == DISPLAYING_RESULTS) {
+            if (Input.GetKeyDown(KeyCode.Return)) {
+                HideQuarterRundown();
+                //TODO: load new level (reset ui, etc.)
+            }
         }
     }
 
     private void DisplayQuarterRundown() {
+        state = DISPLAYING_RESULTS;
         workCountText.text = workCount.ToString();
         quarterRundown.SetActive(true);
+        if (quarter == 1) {
+
+        }
+    }
+
+    private void HideQuarterRundown() {
+        state = PLAYING_GAME;
+        //workCountText.text = workCount.ToString();
+        quarterRundown.SetActive(false);
     }
 
     /**
@@ -72,13 +86,15 @@ public class GameController : MonoBehaviour
      * If reasons is 1, you failed to meet your quota. 
      */
     public void LoseState(int reason) {
-        if (reason == 0) {
+        if (reason == 0 && state == PLAYING_GAME) {
             DisplayConfidenceTooLow();
         }
     }
 
     private void DisplayConfidenceTooLow() {
+        GameObject.Find("GameplayUI").SetActive(false);
         confidenceTooLow.SetActive(true);
+
     }
 
     public void addWorker(CoWorker c) {

@@ -34,7 +34,7 @@ public class Paper : MonoBehaviour {
         this.body = GetComponent<Rigidbody2D>();
         this.boss = GameObject.Find("Boss").GetComponent<Boss>();
         this.path = gridManager.FindPath(transform.position, boss.transform.position);
-        this.graph = GameObject.Find("Graph").GetComponent<Graph>();
+        //this.graph = GameObject.Find("Graph").GetComponent<Graph>();
     }
 
     // Update is called once per frame

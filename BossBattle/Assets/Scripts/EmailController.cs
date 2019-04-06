@@ -16,15 +16,21 @@ public class EmailController: MonoBehaviour
 
     void Update()
     {
+        if (!displayingEmail && inbox.Count > 0) {
+            // play flashing animation
+        } else {
+
+        }
+
         if (Input.GetKeyDown(KeyCode.E)) {
             if (!displayingEmail && inbox.Count > 0) {
                 currentEmail = inbox[0];
                 currentEmail.SetActive(true);
                 displayingEmail = true;
-                //GetComponent<Image>().sprite = open;
+                GetComponent<Image>().sprite = open;
                 inbox.RemoveAt(0);
             } else if (!displayingEmail && inbox.Count <= 0) {
-                // todo: play "inbox empty!" error sound
+                // TODO: play "inbox empty!" error sound
             }
             else {
                 currentEmail.SetActive(false);

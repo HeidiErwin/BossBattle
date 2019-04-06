@@ -9,6 +9,16 @@ public class Boss : MonoBehaviour {
     [SerializeField] private int numTasksCapableOfHandling; // max number of tasks boss can handle before being overwhelmed
     [SerializeField] private ConfidenceBar confidenceBar;
     [SerializeField] private GameController gameController;
+    [SerializeField] GameObject bossHeadUI;
+
+    [SerializeField] private Sprite happyBoss;
+    [SerializeField] private Sprite neutralBoss;
+    [SerializeField] private Sprite distressedBoss;
+    [SerializeField] private Sprite hangryBoss;
+    [SerializeField] private Sprite happyBossHead;
+    [SerializeField] private Sprite neutralBossHead;
+    [SerializeField] private Sprite distressedBossHead;
+    [SerializeField] private Sprite hangryBossHead;
 
     private float timeLeft = 0.0f;
     private float bufferTime = 8.0f;
@@ -43,6 +53,20 @@ public class Boss : MonoBehaviour {
         if (tasksHandling > numTasksCapableOfHandling) {
             SetConfidence(confidence - .01f);
             confidenceBar.SetConfidence(confidence);
+        }
+
+        if (confidence > .75f) {
+            this.GetComponent<SpriteRenderer>().sprite = happyBoss;
+            bossHeadUI.GetComponent<Image>().sprite = happyBossHead;
+        } else if (confidence > .5f) {
+            this.GetComponent<SpriteRenderer>().sprite = neutralBoss;
+            bossHeadUI.GetComponent<Image>().sprite = neutralBossHead;
+        } else if (confidence > .25f) {
+            this.GetComponent<SpriteRenderer>().sprite = distressedBoss;
+            bossHeadUI.GetComponent<Image>().sprite = distressedBossHead;
+        } else {
+            this.GetComponent<SpriteRenderer>().sprite = hangryBoss;
+            bossHeadUI.GetComponent<Image>().sprite = hangryBossHead;
         }
     }
 
