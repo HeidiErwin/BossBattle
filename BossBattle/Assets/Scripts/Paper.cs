@@ -106,7 +106,6 @@ public class Paper : MonoBehaviour {
 		Debug.Log("work");
 		if (player.GetComponent<Player>().assignTask(workTime)) {
             UnlockMutex();
-            graph.PlaceDotOnGraph();
             Destroy(gameObject);
 		}
 	}
@@ -137,7 +136,6 @@ public class Paper : MonoBehaviour {
             boss.SetConfidence(boss.GetConfidence() + 0.1f);
             Invoke("setBossBusyMutex", 0.0001f);
             UnlockMutex();
-            graph.PlaceDotOnGraph();
             Destroy(gameObject, 0.001f);
         }
         if (boss.queueFull()) {
@@ -153,7 +151,6 @@ public class Paper : MonoBehaviour {
             UnlockMutex();
             Destroy(gameObject, 0.001f);
 		}
-		
 	}
 
 	private void setBusyMutex()

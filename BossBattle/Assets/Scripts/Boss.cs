@@ -25,9 +25,11 @@ public class Boss : MonoBehaviour {
     public static bool busyMutex = false;
     private Slider workBar;
     private List<float> workQueueTimes = new List<float>();
+    private Animator animator;
 
     public void Start() {
         this.workBar = transform.Find("WorkBar").Find("Slider").gameObject.GetComponent<Slider>();
+        animator = GetComponent<Animator>();
     }
 
     void Update() {
@@ -50,22 +52,22 @@ public class Boss : MonoBehaviour {
             }
         }
 
+        animator.SetFloat("confidence", confidence);
+
         if (tasksHandling > numTasksCapableOfHandling) {
             SetConfidence(confidence - .01f);
             confidenceBar.SetConfidence(confidence);
         }
 
-        if (confidence > .75f) {
-            this.GetComponent<SpriteRenderer>().sprite = happyBoss;
+        if (confidence > .8f) {
             bossHeadUI.GetComponent<Image>().sprite = happyBossHead;
-        } else if (confidence > .5f) {
-            this.GetComponent<SpriteRenderer>().sprite = neutralBoss;
+        } else if (confidence > .6f) {
             bossHeadUI.GetComponent<Image>().sprite = neutralBossHead;
-        } else if (confidence > .25f) {
-            this.GetComponent<SpriteRenderer>().sprite = distressedBoss;
+        } else if (confidence > .4f) {
             bossHeadUI.GetComponent<Image>().sprite = distressedBossHead;
+        } else if (confidence > .2f) {
+            bossHeadUI.GetComponent<Image>().sprite = hangryBossHead;
         } else {
-            this.GetComponent<SpriteRenderer>().sprite = hangryBoss;
             bossHeadUI.GetComponent<Image>().sprite = hangryBossHead;
         }
     }
