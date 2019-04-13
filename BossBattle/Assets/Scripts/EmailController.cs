@@ -10,6 +10,24 @@ public class EmailController: MonoBehaviour
     public List<GameObject> inbox;
     [SerializeField] private GameController controller;
 
+    [SerializeField] private GameObject goodEmail1;
+    [SerializeField] private GameObject goodEmail2;
+    [SerializeField] private GameObject goodEmail3;
+    [SerializeField] private GameObject goodEmail4;
+    [SerializeField] private GameObject goodEmail5;
+    [SerializeField] private GameObject goodEmail6;
+    [SerializeField] private GameObject goodEmail7;
+    [SerializeField] private GameObject goodEmail8;
+
+    [SerializeField] private GameObject badEmail1;
+    [SerializeField] private GameObject badEmail2;
+    [SerializeField] private GameObject badEmail3;
+    [SerializeField] private GameObject badEmail4;
+    [SerializeField] private GameObject badEmail5;
+    [SerializeField] private GameObject badEmail6;
+    [SerializeField] private GameObject badEmail7;
+    [SerializeField] private GameObject badEmail8;
+
     public Sprite closed;
     public Sprite newMessage;
     public Sprite open;
@@ -20,7 +38,6 @@ public class EmailController: MonoBehaviour
 
     private void Start() {
         animator = GetComponent<Animator>();
-
     }
 
     void Update()

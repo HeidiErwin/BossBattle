@@ -118,7 +118,7 @@ public class GameController : MonoBehaviour {
             this.availableWorkers.Add(child.GetComponent<CoWorker>());
         }
     }
-
+    
     public void Pause() {
        if (state == PLAYING_GAME) {
             state = PAUSE;
