@@ -3897,7 +3897,7 @@ MonoBehaviour:
   timeBetweenSpawns: 3
   confidenceTooLow: {fileID: 1280925025}
   quarterRundown: {fileID: 1074681716}
-  secondsRemaining: 5
+  secondsRemaining: 30
   timerText: {fileID: 30747932}
   workCountText: {fileID: 1400965045}
 --- !u!4 &1278206215
