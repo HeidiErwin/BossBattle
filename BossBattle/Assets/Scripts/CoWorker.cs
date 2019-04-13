@@ -22,6 +22,7 @@ public class CoWorker : MonoBehaviour
             if (timeLeft < 0 && busy) {
                 this.busy = false;
                 manager.addWorker(this);
+                manager.IncreaseWorkCount();
             } else if (timeLeft > 0) {
                 timeLeft -= Time.deltaTime;
                 workBar.value = timeLeft;

@@ -20,7 +20,8 @@ public class GameController : MonoBehaviour {
     [SerializeField] GameObject quarterRundown;
     [SerializeField] float secondsRemaining;
     [SerializeField] Text timerText;
-    [SerializeField] Text workCountText;
+    [SerializeField] Text workText; // part of gameplay UI
+    [SerializeField] Text workCountText; // final, for quarter rundown
     private int workCount = 0;
     private int quarter = 1;
     private UnityEngine.Object[] papers;
@@ -40,6 +41,7 @@ public class GameController : MonoBehaviour {
 
     void Update() {
         if (state == PLAYING_GAME) {
+            workText.text = workCount.ToString();
             if (timer > 0) {
                 timer -= Time.deltaTime;
             } else {
@@ -77,6 +79,10 @@ public class GameController : MonoBehaviour {
         state = PLAYING_GAME;
         //workCountText.text = workCount.ToString();
         quarterRundown.SetActive(false);
+    }
+
+    public void IncreaseWorkCount() {
+        workCount++;
     }
 
     /**

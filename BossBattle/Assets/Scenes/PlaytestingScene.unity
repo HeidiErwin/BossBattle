@@ -4894,8 +4894,9 @@ MonoBehaviour:
   timeBetweenSpawns: 3
   confidenceTooLow: {fileID: 1521771664}
   quarterRundown: {fileID: 1834136697}
-  secondsRemaining: 70
+  secondsRemaining: 30
   timerText: {fileID: 667981328}
+  workText: {fileID: 1753188059}
   workCountText: {fileID: 301776456}
 --- !u!4 &1509164599
 Transform:
@@ -5431,6 +5432,22 @@ MonoBehaviour:
   - {fileID: 19564045}
   - {fileID: 1585834059}
   controller: {fileID: 1509164598}
+  goodEmail1: {fileID: 0}
+  goodEmail2: {fileID: 0}
+  goodEmail3: {fileID: 0}
+  goodEmail4: {fileID: 0}
+  goodEmail5: {fileID: 0}
+  goodEmail6: {fileID: 0}
+  goodEmail7: {fileID: 0}
+  goodEmail8: {fileID: 0}
+  badEmail1: {fileID: 0}
+  badEmail2: {fileID: 0}
+  badEmail3: {fileID: 0}
+  badEmail4: {fileID: 0}
+  badEmail5: {fileID: 0}
+  badEmail6: {fileID: 0}
+  badEmail7: {fileID: 0}
+  badEmail8: {fileID: 0}
   closed: {fileID: 21300000, guid: 1bb739e116d47194b9f57fb87d1fc873, type: 3}
   newMessage: {fileID: 21300000, guid: 23f44e922b8bb1c4dbd9b7d07e294cfa, type: 3}
   open: {fileID: 21300000, guid: 9d85839fe0d306b4ea27e752dd2d5db3, type: 3}

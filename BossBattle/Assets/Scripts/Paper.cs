@@ -119,7 +119,6 @@ public class Paper : MonoBehaviour {
 					CoWorker.busyMutex = true;
 					Invoke("setCoWorkerBusyMutex", 0.0001f);
                     UnlockMutex();
-                    graph.PlaceDotOnGraph();
                     Destroy(gameObject, 0.001f);
 				}
 			} else {

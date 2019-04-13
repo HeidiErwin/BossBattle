@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
         if (!controller.IsPaused()) {
             if (timeLeft < 0 && busy) {
                 this.busy = false;
+                controller.IncreaseWorkCount();
                 workBar.gameObject.SetActive(false);
             } else if (timeLeft > 0) {
                 timeLeft -= Time.deltaTime;

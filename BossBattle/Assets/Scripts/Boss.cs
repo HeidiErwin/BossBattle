@@ -35,6 +35,7 @@ public class Boss : MonoBehaviour {
     void Update() {
         if (timeLeft <= 0 && isBusy()) {
             workQueueTimes.Remove(workQueueTimes[0]);
+            gameController.IncreaseWorkCount();
 
             if (isBusy()) {
                 this.bufferTime = 8.0f;
