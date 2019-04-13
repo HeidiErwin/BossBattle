@@ -34,18 +34,19 @@ public class Paper : MonoBehaviour {
         this.body = GetComponent<Rigidbody2D>();
         this.boss = GameObject.Find("Boss").GetComponent<Boss>();
         this.path = gridManager.FindPath(transform.position, boss.transform.position);
-        //this.graph = GameObject.Find("Graph").GetComponent<Graph>();
     }
 
     // Update is called once per frame
     void Update () {
-        MoveTowardsTarget();
-        if (Vector3.Distance(player.transform.position,transform.position) < 1) {
-			menu.SetActive(true);
-			handleOptions();
-		} else {
-			menu.SetActive(false);
-		}
+        if (!manager.IsPaused()) {
+            MoveTowardsTarget();
+            if (Vector3.Distance(player.transform.position, transform.position) < 1) {
+                menu.SetActive(true);
+                handleOptions();
+            } else {
+                menu.SetActive(false);
+            }
+        }
 	}
 
     private void MoveTowardsTarget() {

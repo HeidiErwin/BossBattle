@@ -18,12 +18,14 @@ public class CoWorker : MonoBehaviour
     }
     void Update()
     {
-        if (timeLeft < 0 && busy) {
-            this.busy = false;
-            manager.addWorker(this);
-        } else if (timeLeft > 0) {
-            timeLeft -= Time.deltaTime;
-            workBar.value = timeLeft;
+        if (!manager.IsPaused()) {
+            if (timeLeft < 0 && busy) {
+                this.busy = false;
+                manager.addWorker(this);
+            } else if (timeLeft > 0) {
+                timeLeft -= Time.deltaTime;
+                workBar.value = timeLeft;
+            }
         }
     }
 

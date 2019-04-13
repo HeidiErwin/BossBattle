@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     private int direction; 
     protected float speed = 5.0f;
     private SpriteRenderer spriteRenderer;
+    private GameController controller;
 
     //constants
     public const int NORTH = 0;
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        this.controller = GameObject.Find("GameController").GetComponent<GameController>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         workBar = transform.Find("WorkBar").Find("Slider").gameObject.GetComponent<Slider>();
     }
@@ -34,21 +36,22 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timeLeft < 0 && busy) {
-            this.busy = false;
-            workBar.gameObject.SetActive(false);
-        } else if (timeLeft > 0) {
-            timeLeft -= Time.deltaTime;
-            workBar.value = timeLeft;
-        } else {
-            GetInput();
-            transform.Translate(velocity * speed * Time.deltaTime);
+        if (!controller.IsPaused()) {
+            if (timeLeft < 0 && busy) {
+                this.busy = false;
+                workBar.gameObject.SetActive(false);
+            } else if (timeLeft > 0) {
+                timeLeft -= Time.deltaTime;
+                workBar.value = timeLeft;
+            } else {
+                GetInput();
+                transform.Translate(velocity * speed * Time.deltaTime);
+            }
         }
     }
 
     void GetInput() {
         velocity = Vector2.zero;
-
             if (Input.GetKey(KeyCode.UpArrow)) {
                 direction = NORTH;
                 spriteRenderer.sprite = back;

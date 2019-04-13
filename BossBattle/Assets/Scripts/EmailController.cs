@@ -8,6 +8,7 @@ public class EmailController: MonoBehaviour
     public GameObject currentEmail;
     private bool displayingEmail = false;
     public List<GameObject> inbox;
+    [SerializeField] private GameController controller;
 
     public Sprite closed;
     public Sprite newMessage;
@@ -29,6 +30,7 @@ public class EmailController: MonoBehaviour
                 displayingEmail = true;
                 GetComponent<Image>().sprite = open;
                 inbox.RemoveAt(0);
+                controller.Pause();
             } else if (!displayingEmail && inbox.Count <= 0) {
                 // TODO: play "inbox empty!" error sound
             }
@@ -36,6 +38,7 @@ public class EmailController: MonoBehaviour
                 currentEmail.SetActive(false);
                 displayingEmail = false;
                 GetComponent<Image>().sprite = closed;
+                controller.Unpause();
             }
         }
     }
