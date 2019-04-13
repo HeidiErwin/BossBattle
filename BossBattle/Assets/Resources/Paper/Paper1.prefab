@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Paper1
       objectReference: {fileID: 0}
+    - target: {fileID: 7733693898715415335, guid: 328167deaf9cbd64f9131b2d92e29e79,
+        type: 3}
+      propertyPath: m_TagString
+      value: enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 7733693898715415328, guid: 328167deaf9cbd64f9131b2d92e29e79,
         type: 3}
       propertyPath: m_LocalPosition.x
