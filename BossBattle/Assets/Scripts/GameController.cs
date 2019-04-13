@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class GameController : MonoBehaviour {
     private Boss boss;
@@ -28,6 +30,8 @@ public class GameController : MonoBehaviour {
     private int state = PLAYING_GAME;
 
     void Start() {
+        SceneManager.SetActiveScene(gameObject.scene);
+
         boss = GameObject.Find("Boss").GetComponent<Boss>();
         availableWorkers = new List<CoWorker>();
         this.spawnLocations = new List<GameObject>();
@@ -61,7 +65,8 @@ public class GameController : MonoBehaviour {
         } else if (state == DISPLAYING_RESULTS) {
             if (Input.GetKeyDown(KeyCode.Return)) {
                 HideQuarterRundown();
-                //TODO: load new level (reset ui, etc.)
+                GameObject.Find("MasterGameController").GetComponent<MasterGameController>().NextLevel();
+
             }
         }
     }
@@ -99,7 +104,6 @@ public class GameController : MonoBehaviour {
     private void DisplayConfidenceTooLow() {
         GameObject.Find("GameplayUI").SetActive(false);
         confidenceTooLow.SetActive(true);
-
     }
 
     public void addWorker(CoWorker c) {

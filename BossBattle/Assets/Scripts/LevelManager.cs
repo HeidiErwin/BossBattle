@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
     }
 
     public void StartGame() {
-        SceneManager.LoadScene("PlaytestingScene");
+        SceneManager.LoadScene("BaseScene");
     }
 
     public void ShowCredits() {
