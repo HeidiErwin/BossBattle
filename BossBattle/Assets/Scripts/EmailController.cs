@@ -13,33 +13,55 @@ public class EmailController: MonoBehaviour
     public Sprite closed;
     public Sprite newMessage;
     public Sprite open;
-    public Animation flashing;
+    private Animator animator;
+
+    private bool pauseGame = false;
+    private bool unpauseGame = false;
+
+    private void Start() {
+        animator = GetComponent<Animator>();
+    }
 
     void Update()
     {
-        if (!displayingEmail && inbox.Count > 0) {
-            // play flashing animation
-        } else {
-
-        }
-
         if (Input.GetKeyDown(KeyCode.E)) {
-            if (!displayingEmail && inbox.Count > 0) {
+            if (!displayingEmail && inbox.Count > 0) { //show email
                 currentEmail = inbox[0];
                 currentEmail.SetActive(true);
                 displayingEmail = true;
-                GetComponent<Image>().sprite = open;
+                animator.SetBool("readingMail", true);
                 inbox.RemoveAt(0);
                 controller.Pause();
-            } else if (!displayingEmail && inbox.Count <= 0) {
+                GetComponent<Image>().sprite = open;
+
+            } else if (!displayingEmail && inbox.Count <= 0) { // no email to show
                 // TODO: play "inbox empty!" error sound
             }
-            else {
+            else { // hide email
                 currentEmail.SetActive(false);
                 displayingEmail = false;
-                GetComponent<Image>().sprite = closed;
+                animator.SetBool("readingMail", false);
                 controller.Unpause();
             }
+        }
+
+        if (!displayingEmail && inbox.Count > 0) {
+            animator.SetBool("inboxEmpty", false);
+            animator.SetBool("readingMail", false);
+        } else if (displayingEmail) {
+            animator.SetBool("readingMail", true);
+        } else {
+            animator.SetBool("inboxEmpty", true);
+        }
+    }
+
+    private void LateUpdate() {
+        if (pauseGame) {
+            controller.Pause();
+            pauseGame = false;
+        } else if (unpauseGame) {
+            controller.Unpause();
+            unpauseGame = false;
         }
     }
 

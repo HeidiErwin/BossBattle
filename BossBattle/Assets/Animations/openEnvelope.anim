@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: email
+  m_Name: openEnvelope
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,14 +20,14 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: abb478e4928af3c4e80b2c0499da8a43, type: 3}
-    - time: 0.33333334
-      value: {fileID: 21300000, guid: 23f44e922b8bb1c4dbd9b7d07e294cfa, type: 3}
+      value: {fileID: 21300000, guid: 9d85839fe0d306b4ea27e752dd2d5db3, type: 3}
+    - time: 0.033333335
+      value: {fileID: 21300000, guid: 9d85839fe0d306b4ea27e752dd2d5db3, type: 3}
     attribute: m_Sprite
     path: 
     classID: 114
     script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_SampleRate: 3
+  m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -42,14 +42,14 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: abb478e4928af3c4e80b2c0499da8a43, type: 3}
-    - {fileID: 21300000, guid: 23f44e922b8bb1c4dbd9b7d07e294cfa, type: 3}
+    - {fileID: 21300000, guid: 9d85839fe0d306b4ea27e752dd2d5db3, type: 3}
+    - {fileID: 21300000, guid: 9d85839fe0d306b4ea27e752dd2d5db3, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.6666667
+    m_StopTime: 0.050000004
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
