@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour {
     [SerializeField] Text workText; // part of gameplay UI
     [SerializeField] Text workCountText; // final, for quarter rundown
     private int workCount = 0;
-    private int quarter = 1;
+    [SerializeField] public int quarter = 1;
     private UnityEngine.Object[] papers;
     private int state = PLAYING_GAME;
 

@@ -2627,7 +2627,9 @@ MonoBehaviour:
   quarterRundown: {fileID: 855365416}
   secondsRemaining: 5
   timerText: {fileID: 2139557900}
+  workText: {fileID: 2048189839}
   workCountText: {fileID: 913657071}
+  quarter: 2
 --- !u!4 &881437762
 Transform:
   m_ObjectHideFlags: 0
