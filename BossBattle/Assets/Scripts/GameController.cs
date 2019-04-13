@@ -123,10 +123,12 @@ public class GameController : MonoBehaviour {
        if (state == PLAYING_GAME) {
             state = PAUSE;
         }
+        Time.timeScale = 0.0f;
     }
 
     public void Unpause() {
         state = PLAYING_GAME;
+        Time.timeScale = 1.0f;
     }
 
     public bool IsPaused() {

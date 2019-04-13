@@ -5,8 +5,10 @@ using UnityEngine;
 public class Paper : MonoBehaviour {
 
     public float speed = 10f;
+    public int isMoving = 1;
 
-	public float workTime;
+
+    public float workTime;
 	private GameObject player;
 	private GameObject menu;
     private bool hasGridMutex;
@@ -38,14 +40,12 @@ public class Paper : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (!manager.IsPaused()) {
-            MoveTowardsTarget();
-            if (Vector3.Distance(player.transform.position, transform.position) < 1) {
-                menu.SetActive(true);
-                handleOptions();
-            } else {
-                menu.SetActive(false);
-            }
+        MoveTowardsTarget();
+        if (Vector3.Distance(player.transform.position, transform.position) < 1) {
+            menu.SetActive(true);
+            handleOptions();
+        } else {
+            menu.SetActive(false);
         }
 	}
 
