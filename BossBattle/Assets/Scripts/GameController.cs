@@ -20,11 +20,14 @@ public class GameController : MonoBehaviour {
     private List<CoWorker> availableWorkers;
     [SerializeField] GameObject confidenceTooLow;
     [SerializeField] GameObject quarterRundown;
+    [SerializeField] GameObject successMessage;
+    [SerializeField] GameObject failMessage;
     [SerializeField] float secondsRemaining;
     [SerializeField] Text timerText;
     [SerializeField] Text workText; // part of gameplay UI
     [SerializeField] Text workCountText; // final, for quarter rundown
     private int workCount = 0;
+    private int workQuota = 10;
     [SerializeField] public int quarter = 1;
     private UnityEngine.Object[] papers;
     private int state = PLAYING_GAME;
@@ -75,9 +78,17 @@ public class GameController : MonoBehaviour {
         state = DISPLAYING_RESULTS;
         workCountText.text = workCount.ToString();
         quarterRundown.SetActive(true);
-        if (quarter == 1) {
-
+        if (QuotaMet()) {
+            successMessage.SetActive(true);
+            failMessage.SetActive(false);
+        } else {
+            failMessage.SetActive(true);
+            successMessage.SetActive(false);
         }
+    }
+
+    private bool QuotaMet() {
+        return (workCount >= workQuota);
     }
 
     private void HideQuarterRundown() {

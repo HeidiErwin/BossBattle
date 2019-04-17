@@ -17,7 +17,7 @@ public class MasterGameController : MonoBehaviour
     public void NextLevel() {
         SceneManager.UnloadScene("Level" + quarter);
         quarter += 1;
-        if (quarter == 4) {
+        if (quarter == 5) {
             SceneManager.LoadScene("Title");
         } else {
             SceneManager.LoadScene("Level" + quarter, LoadSceneMode.Additive);

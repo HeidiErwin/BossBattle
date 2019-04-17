@@ -5039,10 +5039,11 @@ MonoBehaviour:
   timeBetweenSpawns: 3
   confidenceTooLow: {fileID: 1521771664}
   quarterRundown: {fileID: 1834136697}
-  secondsRemaining: 30
+  secondsRemaining: 120
   timerText: {fileID: 667981328}
   workText: {fileID: 1753188059}
   workCountText: {fileID: 301776456}
+  quarter: 1
 --- !u!4 &1509164599
 Transform:
   m_ObjectHideFlags: 0
