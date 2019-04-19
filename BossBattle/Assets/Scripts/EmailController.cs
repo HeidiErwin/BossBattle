@@ -62,7 +62,6 @@ public class EmailController: MonoBehaviour
                 animator.SetBool("readingMail", false);
                 animator.enabled = true;
                 controller.Unpause();
-
             }
         }
 

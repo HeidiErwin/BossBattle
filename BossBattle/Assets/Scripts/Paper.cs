@@ -21,7 +21,6 @@ public class Paper : MonoBehaviour {
 
     private List<Node> path;
     private int pathIndex;
-    private Graph graph;
 
     public List<Sprite> sprites;
 

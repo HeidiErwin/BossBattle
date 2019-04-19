@@ -6,27 +6,24 @@ using UnityEngine;
 
 public class MasterGameController : MonoBehaviour
 {
-    private int quarter = 1;
+    public int quarter = 1;
+    public bool q1QuotaMet = false;
+    public bool q2QuotaMet = false;
+    public bool q3QuotaMet = false;
+    public bool q4QuotaMet = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         SceneManager.LoadScene("Level1", LoadSceneMode.Additive);
     }
 
     public void NextLevel() {
-        SceneManager.UnloadScene("Level" + quarter);
+        SceneManager.UnloadSceneAsync("Level" + quarter);
         quarter += 1;
         if (quarter == 5) {
             SceneManager.LoadScene("Title");
         } else {
             SceneManager.LoadScene("Level" + quarter, LoadSceneMode.Additive);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

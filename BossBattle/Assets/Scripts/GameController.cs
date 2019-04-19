@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
     private Boss boss;
+    MasterGameController masterController;
 
     private const int PLAYING_GAME = 0;
     private const int PAUSE = 1; // email or otherwise
@@ -20,21 +21,26 @@ public class GameController : MonoBehaviour {
     private List<CoWorker> availableWorkers;
     [SerializeField] GameObject confidenceTooLow;
     [SerializeField] GameObject quarterRundown;
-    [SerializeField] GameObject successMessage;
-    [SerializeField] GameObject failMessage;
     [SerializeField] float secondsRemaining;
+    [SerializeField] int workQuota;
+    [SerializeField] Text quotaText; // "/10" for instance, at top left of screen
     [SerializeField] Text timerText;
-    [SerializeField] Text workText; // part of gameplay UI
-    [SerializeField] Text workCountText; // final, for quarter rundown
     private int workCount = 0;
-    private int workQuota = 10;
     [SerializeField] public int quarter = 1;
     private UnityEngine.Object[] papers;
     private int state = PLAYING_GAME;
 
+    [SerializeField] Text workText; // part of gameplay 
+    [SerializeField] Text workCountText; // final, for quarter rundown
+    [SerializeField] GameObject rundownQ1Box;
+    [SerializeField] GameObject rundownQ2Box;
+    [SerializeField] GameObject rundownQ3Box;
+    [SerializeField] GameObject rundownQ4Box;
+    [SerializeField] GameObject successMessage;
+    [SerializeField] GameObject failMessage;
+
     void Start() {
         SceneManager.SetActiveScene(gameObject.scene);
-
         boss = GameObject.Find("Boss").GetComponent<Boss>();
         availableWorkers = new List<CoWorker>();
         this.spawnLocations = new List<GameObject>();
@@ -43,7 +49,10 @@ public class GameController : MonoBehaviour {
             this.spawnLocations.Add(child.gameObject);
         }
         timerText.text = secondsRemaining.ToString();
+        quotaText.text = "/" + workQuota.ToString();
         papers = Resources.LoadAll("Paper");
+        quarter = FindObjectOfType<MasterGameController>().quarter;
+        masterController = GameObject.Find("MasterGameController").GetComponent<MasterGameController>();
     }
 
     void Update() {
@@ -57,6 +66,7 @@ public class GameController : MonoBehaviour {
                 UnityEngine.Object paper = papers[UnityEngine.Random.Range(0, papers.Length)];
                 //UnityEngine.Object paper = papers[0];
                 Instantiate(paper, this.spawnLocations[UnityEngine.Random.Range(0, this.spawnLocations.Count)].transform.position, Quaternion.identity);
+                Debug.Log("spawning!");
             }
             if (secondsRemaining > 0) {
                 secondsRemaining -= Time.deltaTime;
@@ -68,8 +78,7 @@ public class GameController : MonoBehaviour {
         } else if (state == DISPLAYING_RESULTS) {
             if (Input.GetKeyDown(KeyCode.Return)) {
                 HideQuarterRundown();
-                GameObject.Find("MasterGameController").GetComponent<MasterGameController>().NextLevel();
-
+                masterController.NextLevel();
             }
         }
     }
@@ -85,9 +94,41 @@ public class GameController : MonoBehaviour {
             failMessage.SetActive(true);
             successMessage.SetActive(false);
         }
+        DisplayGraph();
     }
 
-    private bool QuotaMet() {
+    private void DisplayGraph() {
+        switch (masterController.quarter) {
+            case 1:
+                if (QuotaMet()) {
+                    rundownQ1Box.GetComponent<Animator>().SetBool("quotaMet", true);
+                    masterController.q1QuotaMet = true;
+                }
+                break;
+            case 2:
+                if (QuotaMet()) {
+                    rundownQ2Box.GetComponent<Animator>().SetBool("quotaMet", true);
+                    masterController.q2QuotaMet = true;
+                }
+                break;
+            case 3:
+                if (QuotaMet()) {
+                    rundownQ3Box.GetComponent<Animator>().SetBool("quotaMet", true);
+                    masterController.q3QuotaMet = true;
+                }
+                break;
+            case 4:
+                if (QuotaMet()) {
+                    rundownQ4Box.GetComponent<Animator>().SetBool("quotaMet", true);
+                    masterController.q4QuotaMet = true;
+                }
+                break;
+            default:
+                Console.WriteLine("Default case");
+                break;
+        }
+    }
+        private bool QuotaMet() {
         return (workCount >= workQuota);
     }
 
