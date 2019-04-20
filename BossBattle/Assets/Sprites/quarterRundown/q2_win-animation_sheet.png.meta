@@ -1,7 +1,62 @@
 fileFormatVersion: 2
 guid: 379d6143ad8dd1e4c8756b7de5a3b41b
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: q2_win-animation_sheet_0
+    21300002: q2_win-animation_sheet_1
+    21300004: q2_win-animation_sheet_2
+    21300006: q2_win-animation_sheet_3
+    21300008: q2_win-animation_sheet_4
+    21300010: q2_win-animation_sheet_5
+    21300012: q2_win-animation_sheet_6
+    21300014: q2_win-animation_sheet_7
+    21300016: q2_win-animation_sheet_8
+    21300018: q2_win-animation_sheet_9
+    21300020: q2_win-animation_sheet_10
+    21300022: q2_win-animation_sheet_11
+    21300024: q2_win-animation_sheet_12
+    21300026: q2_win-animation_sheet_13
+    21300028: q2_win-animation_sheet_14
+    21300030: q2_win-animation_sheet_15
+    21300032: q2_win-animation_sheet_16
+    21300034: q2_win-animation_sheet_17
+    21300036: q2_win-animation_sheet_18
+    21300038: q2_win-animation_sheet_19
+    21300040: q2_win-animation_sheet_20
+    21300042: q2_win-animation_sheet_21
+    21300044: q2_win-animation_sheet_22
+    21300046: q2_win-animation_sheet_23
+    21300048: q2_win-animation_sheet_24
+    21300050: q2_win-animation_sheet_25
+    21300052: q2_win-animation_sheet_26
+    21300054: q2_win-animation_sheet_27
+    21300056: q2_win-animation_sheet_28
+    21300058: q2_win-animation_sheet_29
+    21300060: q2_win-animation_sheet_30
+    21300062: q2_win-animation_sheet_31
+    21300064: q2_win-animation_sheet_32
+    21300066: q2_win-animation_sheet_33
+    21300068: q2_win-animation_sheet_34
+    21300070: q2_win-animation_sheet_35
+    21300072: q2_win-animation_sheet_36
+    21300074: q2_win-animation_sheet_37
+    21300076: q2_win-animation_sheet_38
+    21300078: q2_win-animation_sheet_39
+    21300080: q2_win-animation_sheet_40
+    21300082: q2_win-animation_sheet_41
+    21300084: q2_win-animation_sheet_42
+    21300086: q2_win-animation_sheet_43
+    21300088: q2_win-animation_sheet_44
+    21300090: q2_win-animation_sheet_45
+    21300092: q2_win-animation_sheet_46
+    21300094: q2_win-animation_sheet_47
+    21300096: q2_win-animation_sheet_48
+    21300098: q2_win-animation_sheet_49
+    21300100: q2_win-animation_sheet_50
+    21300102: q2_win-animation_sheet_51
+    21300104: q2_win-animation_sheet_52
+    21300106: q2_win-animation_sheet_53
+    21300108: q2_win-animation_sheet_54
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -40,7 +95,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -60,8 +115,30 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 2
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
+    maxTextureSize: 8192
+    resizeAlgorithm: 1
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 1
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 8192
+    resizeAlgorithm: 1
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -71,7 +148,1107 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdbb354a01e668440a9007550f6631aa
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_1
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 343a54baf79afa1438906ee6df90f547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_2
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42190b46cc09e554281a5cbda33f5cf6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_3
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e4297381943b1f44ac32220bc55f7a3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_4
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c7067761b139c9498139a8a79d0bd8d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_5
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bde4402a8b15d049b043a7fdf671c38
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_6
+      rect:
+        serializedVersion: 2
+        x: 1176
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e82b3a7fbe1fc254f9d8443fd75c9529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_7
+      rect:
+        serializedVersion: 2
+        x: 1372
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc06ce8369bf5e64c9068e6934a2675c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_8
+      rect:
+        serializedVersion: 2
+        x: 1568
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a0bfcc0adab9f04fb8de3eb77a4fc34
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_9
+      rect:
+        serializedVersion: 2
+        x: 1764
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7050b7f381569834485dd52deedcf8c1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_10
+      rect:
+        serializedVersion: 2
+        x: 1960
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab5af5f2a80a50146a93a63fbd1aaa6f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_11
+      rect:
+        serializedVersion: 2
+        x: 2156
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de793222b17f843499b77dc30d12d809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_12
+      rect:
+        serializedVersion: 2
+        x: 2352
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c9159e1918d3db41ab483798f0a5432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_13
+      rect:
+        serializedVersion: 2
+        x: 2548
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dad8c923d074a5644a32623f53313737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_14
+      rect:
+        serializedVersion: 2
+        x: 2744
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f77aa4f83490d84f9eeb11742e2fb79
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_15
+      rect:
+        serializedVersion: 2
+        x: 2940
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d38692d94f5628f4cafe778c1e0669ce
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_16
+      rect:
+        serializedVersion: 2
+        x: 3136
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4998d32e40fab944bbf35d0bff90406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_17
+      rect:
+        serializedVersion: 2
+        x: 3332
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b925430294d6434297599b038196854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_18
+      rect:
+        serializedVersion: 2
+        x: 3528
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f620cf2115609fa48b57e22f93358232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_19
+      rect:
+        serializedVersion: 2
+        x: 3724
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb3efa3255159f04f80c278a5de30732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_20
+      rect:
+        serializedVersion: 2
+        x: 3920
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 225e0ba2459aac0448ff72c1e7ab4b49
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_21
+      rect:
+        serializedVersion: 2
+        x: 4116
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72f21bfb8f2024d40843bbc36fab8910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_22
+      rect:
+        serializedVersion: 2
+        x: 4312
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6716635652692444860e197ead15d8a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_23
+      rect:
+        serializedVersion: 2
+        x: 4508
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b250b0a5f5005fa4e81311c4e87e0f37
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_24
+      rect:
+        serializedVersion: 2
+        x: 4704
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2293fcbe10802cc46b0eb27346b95e3b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_25
+      rect:
+        serializedVersion: 2
+        x: 4900
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7207905dd02f2048a269f6373b8f5da
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_26
+      rect:
+        serializedVersion: 2
+        x: 5096
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3940847f2908f9b4a9323d8004c4f1bf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_27
+      rect:
+        serializedVersion: 2
+        x: 5292
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cea23da2a66deb74d9c7712ae55bbcaf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_28
+      rect:
+        serializedVersion: 2
+        x: 5488
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93f884f69197f8349a851573a11c58f8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_29
+      rect:
+        serializedVersion: 2
+        x: 5684
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9233422324e96ea4e90940977d84acd5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_30
+      rect:
+        serializedVersion: 2
+        x: 5880
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 513b0e15afb681e4abcb3f61acca7778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_31
+      rect:
+        serializedVersion: 2
+        x: 6076
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc8e9e951b3ad3344932aa433c5c72ca
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_32
+      rect:
+        serializedVersion: 2
+        x: 6272
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3122be728c263441bded4bf8933afbc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_33
+      rect:
+        serializedVersion: 2
+        x: 6468
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b05db78add9cbe43820454d65fec3fa
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_34
+      rect:
+        serializedVersion: 2
+        x: 6664
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bb5a3e757a3f2840ab89b9260f7fdcf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_35
+      rect:
+        serializedVersion: 2
+        x: 6860
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a0c35752f0fe2144af195828085ab97
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_36
+      rect:
+        serializedVersion: 2
+        x: 7056
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d96f9c07b02df67449cf0ee4c52c2f99
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_37
+      rect:
+        serializedVersion: 2
+        x: 7252
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5fba1551fa4125449849a3d83b1f2fc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_38
+      rect:
+        serializedVersion: 2
+        x: 7448
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10cc66feabf7c5e4d97946b5bd48292b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_39
+      rect:
+        serializedVersion: 2
+        x: 7644
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dfc7b7512bb1b14c8d58d46d682b6f2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_40
+      rect:
+        serializedVersion: 2
+        x: 7840
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55bbd24f5524923468cd63d7c803db69
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_41
+      rect:
+        serializedVersion: 2
+        x: 8036
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbbc3c5b24d16fd4d8ca05b5cf8517ff
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_42
+      rect:
+        serializedVersion: 2
+        x: 8232
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48950a417ac99824d83e959544c312f7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_43
+      rect:
+        serializedVersion: 2
+        x: 8428
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c55e68448c5e9649a6dbc4efd06a502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_44
+      rect:
+        serializedVersion: 2
+        x: 8624
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c083e198ced6c1041b34cf9565af07c1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_45
+      rect:
+        serializedVersion: 2
+        x: 8820
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 883d52853a46f4c4687cdedfdd7a38ef
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_46
+      rect:
+        serializedVersion: 2
+        x: 9016
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0f9e8d0431f8ce41b3ef7aac2c10d37
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_47
+      rect:
+        serializedVersion: 2
+        x: 9212
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cc9508c201ef3f47847cb9193a93813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_48
+      rect:
+        serializedVersion: 2
+        x: 9408
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 998d2dc35559f164ca451624b2395b60
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_49
+      rect:
+        serializedVersion: 2
+        x: 9604
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38ce62da05fac4e458f69e04c3f30f9d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_50
+      rect:
+        serializedVersion: 2
+        x: 9800
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cafbde4ed2955e459659ef1526ff0a0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_51
+      rect:
+        serializedVersion: 2
+        x: 9996
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0439ac63a7d65e44cb0664129c8324e9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_52
+      rect:
+        serializedVersion: 2
+        x: 10192
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 794c664f884b6404aa96d6c8017f7170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_53
+      rect:
+        serializedVersion: 2
+        x: 10388
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 013fa3f9f09dc8449be431387ee869b3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: q2_win-animation_sheet_54
+      rect:
+        serializedVersion: 2
+        x: 10584
+        y: 0
+        width: 196
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f70d566f281f8694abf60990c08af360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
