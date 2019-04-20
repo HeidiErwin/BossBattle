@@ -20,4 +20,8 @@ public class LevelManager : MonoBehaviour
     public void ShowCredits() {
         SceneManager.LoadScene("Credits");
     }
+
+    public void ShowInstructions() {
+        SceneManager.LoadScene("Instructions");
+    }
 }
