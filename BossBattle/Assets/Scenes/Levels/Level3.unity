@@ -3777,9 +3777,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenSpawns: 1
+  emailController: {fileID: 1165608625}
+  totalLevelLength: 30
   confidenceTooLow: {fileID: 1116363853}
   quarterRundown: {fileID: 1153482285}
-  secondsRemaining: 10
   workQuota: 10
   quotaText: {fileID: 1498050353}
   timerText: {fileID: 1266692325}
@@ -4435,20 +4436,8 @@ MonoBehaviour:
   controller: {fileID: 1037914019}
   goodEmail1: {fileID: 0}
   goodEmail2: {fileID: 0}
-  goodEmail3: {fileID: 0}
-  goodEmail4: {fileID: 0}
-  goodEmail5: {fileID: 0}
-  goodEmail6: {fileID: 0}
-  goodEmail7: {fileID: 0}
-  goodEmail8: {fileID: 0}
   badEmail1: {fileID: 0}
   badEmail2: {fileID: 0}
-  badEmail3: {fileID: 0}
-  badEmail4: {fileID: 0}
-  badEmail5: {fileID: 0}
-  badEmail6: {fileID: 0}
-  badEmail7: {fileID: 0}
-  badEmail8: {fileID: 0}
   closed: {fileID: 21300000, guid: 1bb739e116d47194b9f57fb87d1fc873, type: 3}
   newMessage: {fileID: 21300000, guid: 23f44e922b8bb1c4dbd9b7d07e294cfa, type: 3}
   open: {fileID: 21300000, guid: 9d85839fe0d306b4ea27e752dd2d5db3, type: 3}

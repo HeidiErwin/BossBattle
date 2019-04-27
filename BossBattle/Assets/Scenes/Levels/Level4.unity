@@ -2357,9 +2357,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenSpawns: 3
+  emailController: {fileID: 1615110026}
+  totalLevelLength: 30
   confidenceTooLow: {fileID: 239445552}
   quarterRundown: {fileID: 1742536573}
-  secondsRemaining: 10
   workQuota: 1
   quotaText: {fileID: 248171019}
   timerText: {fileID: 1118801737}
@@ -5960,28 +5961,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentEmail: {fileID: 0}
-  inbox:
-  - {fileID: 2115864762}
-  - {fileID: 28306270}
-  - {fileID: 769973627}
-  - {fileID: 2034085697}
+  inbox: []
   controller: {fileID: 683751047}
   goodEmail1: {fileID: 0}
   goodEmail2: {fileID: 0}
-  goodEmail3: {fileID: 0}
-  goodEmail4: {fileID: 0}
-  goodEmail5: {fileID: 0}
-  goodEmail6: {fileID: 0}
-  goodEmail7: {fileID: 0}
-  goodEmail8: {fileID: 0}
   badEmail1: {fileID: 0}
   badEmail2: {fileID: 0}
-  badEmail3: {fileID: 0}
-  badEmail4: {fileID: 0}
-  badEmail5: {fileID: 0}
-  badEmail6: {fileID: 0}
-  badEmail7: {fileID: 0}
-  badEmail8: {fileID: 0}
   closed: {fileID: 21300000, guid: 1bb739e116d47194b9f57fb87d1fc873, type: 3}
   newMessage: {fileID: 21300000, guid: 23f44e922b8bb1c4dbd9b7d07e294cfa, type: 3}
   open: {fileID: 21300000, guid: 9d85839fe0d306b4ea27e752dd2d5db3, type: 3}

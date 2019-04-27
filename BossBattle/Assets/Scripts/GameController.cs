@@ -15,13 +15,15 @@ public class GameController : MonoBehaviour {
     private const int DISPLAYING_RESULTS = 2;
 
     [SerializeField] private float timeBetweenSpawns = 1f;
+    [SerializeField] private EmailController emailController;
 
     private float timer = 0.0f; // Used as a counter in update
+    [SerializeField] private float totalLevelLength; // num seconds in level
     private List<GameObject> spawnLocations;
     private List<CoWorker> availableWorkers;
     [SerializeField] GameObject confidenceTooLow;
     [SerializeField] GameObject quarterRundown;
-    [SerializeField] float secondsRemaining;
+    private float secondsRemaining;
     [SerializeField] int workQuota;
     [SerializeField] Text quotaText; // "/10" for instance, at top left of screen
     [SerializeField] Text timerText;
@@ -29,6 +31,9 @@ public class GameController : MonoBehaviour {
     [SerializeField] public int quarter = 1;
     private UnityEngine.Object[] papers;
     private int state = PLAYING_GAME;
+
+    private bool firstEmailSent = false;
+    private bool secondEmailSent = false;
 
     [SerializeField] Text workText; // part of gameplay 
     [SerializeField] Text workCountText; // final, for quarter rundown
@@ -41,6 +46,7 @@ public class GameController : MonoBehaviour {
 
     void Start() {
         SceneManager.SetActiveScene(gameObject.scene);
+        secondsRemaining = totalLevelLength;
         boss = GameObject.Find("Boss").GetComponent<Boss>();
         availableWorkers = new List<CoWorker>();
         this.spawnLocations = new List<GameObject>();
@@ -68,6 +74,7 @@ public class GameController : MonoBehaviour {
                 Instantiate(paper, this.spawnLocations[UnityEngine.Random.Range(0, this.spawnLocations.Count)].transform.position, Quaternion.identity);
                 Debug.Log("spawning!");
             }
+
             if (secondsRemaining > 0) {
                 secondsRemaining -= Time.deltaTime;
                 timerText.text = Mathf.Round(secondsRemaining).ToString();
@@ -75,6 +82,8 @@ public class GameController : MonoBehaviour {
                 Debug.Log("time's up");
                 DisplayQuarterRundown();
             }
+
+            SendEmailsAsAppropriate();
         } else if (state == DISPLAYING_RESULTS) {
             if (Input.GetKeyDown(KeyCode.Return)) {
                 HideQuarterRundown();
@@ -195,5 +204,30 @@ public class GameController : MonoBehaviour {
 
     public bool IsPaused() {
         return (state == PAUSE);
+    }
+
+    public bool OnTrack() {
+        float secondsIntoGame = totalLevelLength - secondsRemaining;
+        return ((workCount / (float)workQuota) >= (secondsIntoGame / totalLevelLength));
+    }
+
+    private void SendEmailsAsAppropriate() {
+        float secondsIntoGame = totalLevelLength - secondsRemaining;
+        Debug.Log(secondsIntoGame/totalLevelLength);
+        if ((secondsIntoGame / totalLevelLength) >= (1.0f/3.0f) && !firstEmailSent) {
+            if (OnTrack()) {
+                emailController.AddEmailToInbox(1, true);
+            } else {
+                emailController.AddEmailToInbox(1, false);
+            }
+            firstEmailSent = true;
+        } else if ((secondsIntoGame / totalLevelLength) >= (2.0f/3.0f) && !secondEmailSent) {
+            if (OnTrack()) {
+                emailController.AddEmailToInbox(2, true);
+            } else {
+                emailController.AddEmailToInbox(2, false);
+            }
+            secondEmailSent = true;
+        }
     }
 }

@@ -12,21 +12,9 @@ public class EmailController: MonoBehaviour
 
     [SerializeField] private GameObject goodEmail1;
     [SerializeField] private GameObject goodEmail2;
-    [SerializeField] private GameObject goodEmail3;
-    [SerializeField] private GameObject goodEmail4;
-    [SerializeField] private GameObject goodEmail5;
-    [SerializeField] private GameObject goodEmail6;
-    [SerializeField] private GameObject goodEmail7;
-    [SerializeField] private GameObject goodEmail8;
 
     [SerializeField] private GameObject badEmail1;
     [SerializeField] private GameObject badEmail2;
-    [SerializeField] private GameObject badEmail3;
-    [SerializeField] private GameObject badEmail4;
-    [SerializeField] private GameObject badEmail5;
-    [SerializeField] private GameObject badEmail6;
-    [SerializeField] private GameObject badEmail7;
-    [SerializeField] private GameObject badEmail8;
 
     public Sprite closed;
     public Sprite newMessage;
@@ -85,7 +73,25 @@ public class EmailController: MonoBehaviour
         }
     }
 
-    void AddEmailToInbox (GameObject email) {
-        inbox.Add(email);
+    public void AddEmailToInbox(int num, bool good) {
+        if (num == 1) {
+            if (good) {
+                inbox.Add(goodEmail1);
+                Debug.Log("good email 1 added");
+            } else {
+                inbox.Add(badEmail1);
+                Debug.Log("bad email 1 added");
+            }
+        } else if (num == 2) {
+            if (good) {
+                inbox.Add(goodEmail2);
+                Debug.Log("good email 2 added");
+            } else {
+                inbox.Add(badEmail2);
+                Debug.Log("bad email 2 added");
+            }
+        } else {
+            Debug.LogError("Invalid Email Number");
+        }
     }
 }
