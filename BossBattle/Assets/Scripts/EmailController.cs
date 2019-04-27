@@ -35,12 +35,12 @@ public class EmailController: MonoBehaviour
                 currentEmail = inbox[0];
                 currentEmail.SetActive(true);
                 displayingEmail = true;
+                controller.PlayEmailOpenSound();
                 animator.SetBool("readingMail", true);
                 inbox.RemoveAt(0);
                 GetComponent<Image>().sprite = open;
                 animator.enabled = false;
                 controller.Pause();
-
             } else if (!displayingEmail && inbox.Count <= 0) { // no email to show
                 // TODO: play "inbox empty!" error sound
             }
@@ -50,6 +50,7 @@ public class EmailController: MonoBehaviour
                 animator.SetBool("readingMail", false);
                 animator.enabled = true;
                 controller.Unpause();
+                controller.PlayEmailCloseSound();
             }
         }
 

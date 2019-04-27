@@ -26,6 +26,7 @@ public class Boss : MonoBehaviour {
     private Slider workBar;
     private List<float> workQueueTimes = new List<float>();
     private Animator animator;
+    private bool workingSoundPlayed = false;
 
     public void Start() {
         this.workBar = transform.Find("WorkBar").Find("Slider").gameObject.GetComponent<Slider>();
@@ -36,7 +37,7 @@ public class Boss : MonoBehaviour {
         if (timeLeft <= 0 && isBusy()) {
             workQueueTimes.Remove(workQueueTimes[0]);
             gameController.IncreaseWorkCount();
-
+            workingSoundPlayed = false;
             if (isBusy()) {
                 this.bufferTime = 8.0f;
                 startWorkingOnTask();
@@ -44,6 +45,10 @@ public class Boss : MonoBehaviour {
         } else if (timeLeft > 0) {
             timeLeft -= Time.deltaTime;
             workBar.value = timeLeft;
+            if (!workingSoundPlayed) {
+                gameController.PlayBossWorkingSound();
+                workingSoundPlayed = true;
+            }
         }
 
         if (!isBusy()) {

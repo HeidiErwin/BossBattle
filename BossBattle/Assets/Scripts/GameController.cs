@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour {
     [SerializeField] int workQuota;
     [SerializeField] Text quotaText; // "/10" for instance, at top left of screen
     [SerializeField] Text timerText;
+    [SerializeField] Text rundownQuotaText;
     private int workCount = 0;
     [SerializeField] public int quarter = 1;
     private UnityEngine.Object[] papers;
@@ -34,6 +35,7 @@ public class GameController : MonoBehaviour {
 
     private bool firstEmailSent = false;
     private bool secondEmailSent = false;
+    private bool warningSoundPlayed = false;
 
     [SerializeField] Text workText; // part of gameplay 
     [SerializeField] Text workCountText; // final, for quarter rundown
@@ -44,7 +46,19 @@ public class GameController : MonoBehaviour {
     [SerializeField] GameObject successMessage;
     [SerializeField] GameObject failMessage;
 
+    // Audio
+    private AudioSource source;
+    [SerializeField] private AudioClip lose;
+    [SerializeField] private AudioClip win;
+    [SerializeField] private AudioClip taskFinished;
+    [SerializeField] private AudioClip scribbling;
+    [SerializeField] private AudioClip newEmail;
+    [SerializeField] private AudioClip openEmail;
+    [SerializeField] private AudioClip closeEmail;
+    [SerializeField] private AudioClip warning;
+
     void Start() {
+        source = GetComponent<AudioSource>();
         SceneManager.SetActiveScene(gameObject.scene);
         secondsRemaining = totalLevelLength;
         boss = GameObject.Find("Boss").GetComponent<Boss>();
@@ -78,6 +92,11 @@ public class GameController : MonoBehaviour {
             if (secondsRemaining > 0) {
                 secondsRemaining -= Time.deltaTime;
                 timerText.text = Mathf.Round(secondsRemaining).ToString();
+                if (!warningSoundPlayed && secondsRemaining < 10.0f) {
+                    source.PlayOneShot(warning, 1.0f);
+                    warningSoundPlayed = true;
+                    timerText.color = Color.red;
+                }
             } else {
                 Debug.Log("time's up");
                 DisplayQuarterRundown();
@@ -95,13 +114,16 @@ public class GameController : MonoBehaviour {
     private void DisplayQuarterRundown() {
         state = DISPLAYING_RESULTS;
         workCountText.text = workCount.ToString();
+        rundownQuotaText.text = "/" + workQuota.ToString();
         quarterRundown.SetActive(true);
         if (QuotaMet()) {
             successMessage.SetActive(true);
             failMessage.SetActive(false);
+            source.PlayOneShot(win, 1.0f);
         } else {
             failMessage.SetActive(true);
             successMessage.SetActive(false);
+            source.PlayOneShot(lose, 1.0f);
         }
         DisplayGraph();
     }
@@ -221,6 +243,7 @@ public class GameController : MonoBehaviour {
                 emailController.AddEmailToInbox(1, false);
             }
             firstEmailSent = true;
+            source.PlayOneShot(newEmail, 1.0f);
         } else if ((secondsIntoGame / totalLevelLength) >= (2.0f/3.0f) && !secondEmailSent) {
             if (OnTrack()) {
                 emailController.AddEmailToInbox(2, true);
@@ -228,6 +251,23 @@ public class GameController : MonoBehaviour {
                 emailController.AddEmailToInbox(2, false);
             }
             secondEmailSent = true;
+            source.PlayOneShot(newEmail, 1.0f);
         }
+    }
+
+    public void PlayTaskFinishedSound() {
+        source.PlayOneShot(taskFinished, 1.0f);
+    }
+
+    public void PlayBossWorkingSound() {
+        source.PlayOneShot(scribbling, .5f);
+    }
+
+    public void PlayEmailOpenSound() {
+        source.PlayOneShot(openEmail, 1.0f);
+    }
+
+    public void PlayEmailCloseSound() {
+        source.PlayOneShot(closeEmail, 1.0f);
     }
 }

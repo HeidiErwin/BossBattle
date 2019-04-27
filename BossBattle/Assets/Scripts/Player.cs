@@ -41,6 +41,7 @@ public class Player : MonoBehaviour
                 this.busy = false;
                 controller.IncreaseWorkCount();
                 workBar.gameObject.SetActive(false);
+                controller.PlayTaskFinishedSound();
             } else if (timeLeft > 0) {
                 timeLeft -= Time.deltaTime;
                 workBar.value = timeLeft;

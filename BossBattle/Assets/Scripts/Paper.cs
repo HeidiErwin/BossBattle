@@ -103,7 +103,7 @@ public class Paper : MonoBehaviour {
 	}
 
 	void workOnItYourself() {
-		Debug.Log("work");
+		Debug.Log("work on it yourself");
 		if (player.GetComponent<Player>().assignTask(workTime)) {
             UnlockMutex();
             Destroy(gameObject);
