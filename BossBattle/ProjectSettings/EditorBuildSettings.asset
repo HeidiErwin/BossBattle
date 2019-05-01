@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Heidi.unity
     guid: d2bbdf73800a7a2409ca41cd7fcc246b
   - enabled: 1
+    path: Assets/Scenes/Instructions.unity
+    guid: 77457d9c436fe5b448759ae4b99a696e
+  - enabled: 1
     path: Assets/Scenes/PlaytestingScene.unity
     guid: 10a8ba1d8ad4c3848a0cb8b7b7ed2f01
   - enabled: 1

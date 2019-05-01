@@ -3785,6 +3785,7 @@ MonoBehaviour:
   workQuota: 10
   quotaText: {fileID: 1498050353}
   timerText: {fileID: 1266692325}
+  secondsLeftText: {fileID: 1360799231}
   rundownQuotaText: {fileID: 1889158891}
   quarter: 3
   workText: {fileID: 105503076}
@@ -3803,6 +3804,7 @@ MonoBehaviour:
   openEmail: {fileID: 8300000, guid: 3a6be1dc4712a2c41a2b97fec277cb12, type: 3}
   closeEmail: {fileID: 8300000, guid: 844c5c2fd5e9e084aa42f0c7dfacc98c, type: 3}
   warning: {fileID: 8300000, guid: 13655027d1bc57843b69488cd3ce4b00, type: 3}
+  whispers: {fileID: 8300000, guid: e589deda41040c44c98311eb96c4371a, type: 3}
 --- !u!4 &1037914020
 Transform:
   m_ObjectHideFlags: 0

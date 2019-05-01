@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour {
     [SerializeField] int workQuota;
     [SerializeField] Text quotaText; // "/10" for instance, at top left of screen
     [SerializeField] Text timerText;
+    [SerializeField] Text secondsLeftText;
     [SerializeField] Text rundownQuotaText;
     private int workCount = 0;
     [SerializeField] public int quarter = 1;
@@ -56,6 +57,7 @@ public class GameController : MonoBehaviour {
     [SerializeField] private AudioClip openEmail;
     [SerializeField] private AudioClip closeEmail;
     [SerializeField] private AudioClip warning;
+    [SerializeField] private AudioClip whispers;
 
     void Start() {
         source = GetComponent<AudioSource>();
@@ -96,6 +98,7 @@ public class GameController : MonoBehaviour {
                     source.PlayOneShot(warning, 1.0f);
                     warningSoundPlayed = true;
                     timerText.color = Color.red;
+                    secondsLeftText.color = Color.red;
                 }
             } else {
                 Debug.Log("time's up");
@@ -269,5 +272,9 @@ public class GameController : MonoBehaviour {
 
     public void PlayEmailCloseSound() {
         source.PlayOneShot(closeEmail, 1.0f);
+    }
+
+    public void PlayWhispers() {
+        source.PlayOneShot(whispers, 1.0f);
     }
 }

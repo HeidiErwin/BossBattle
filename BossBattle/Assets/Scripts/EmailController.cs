@@ -82,6 +82,7 @@ public class EmailController: MonoBehaviour
             } else {
                 inbox.Add(badEmail1);
                 Debug.Log("bad email 1 added");
+                controller.PlayWhispers();
             }
         } else if (num == 2) {
             if (good) {
@@ -90,6 +91,7 @@ public class EmailController: MonoBehaviour
             } else {
                 inbox.Add(badEmail2);
                 Debug.Log("bad email 2 added");
+                controller.PlayWhispers();
             }
         } else {
             Debug.LogError("Invalid Email Number");
