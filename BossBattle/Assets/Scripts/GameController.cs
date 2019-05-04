@@ -75,6 +75,7 @@ public class GameController : MonoBehaviour {
         papers = Resources.LoadAll("Paper");
         quarter = FindObjectOfType<MasterGameController>().quarter;
         masterController = GameObject.Find("MasterGameController").GetComponent<MasterGameController>();
+        masterController.SetQuota(quarter, workQuota);
     }
 
     void Update() {

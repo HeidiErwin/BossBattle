@@ -63,6 +63,9 @@ TagManager:
   - name: Dots
     uniqueID: 7685519
     locked: 0
+  - name: Desk
+    uniqueID: 4065654783
+    locked: 0
   - name: Characters
     uniqueID: 497239071
     locked: 0
