@@ -116,6 +116,7 @@ public class GameController : MonoBehaviour {
     }
 
     private void DisplayQuarterRundown() {
+        GameObject.Find("Music").GetComponent<AudioSource>().Stop();
         state = DISPLAYING_RESULTS;
         workCountText.text = workCount.ToString();
         rundownQuotaText.text = "/" + workQuota.ToString();
@@ -130,6 +131,8 @@ public class GameController : MonoBehaviour {
             source.PlayOneShot(lose, 1.0f);
         }
         DisplayGraph();
+        Debug.Log("WORK COUNT" + workCount);
+        masterController.SetScore(quarter, workCount);
     }
 
     private void DisplayGraph() {
@@ -204,7 +207,6 @@ public class GameController : MonoBehaviour {
         }
         CoWorker ret = availableWorkers[0];
         availableWorkers.RemoveAt(0);
-        Debug.Log(availableWorkers.Count);
         return ret;
     }
 
@@ -239,7 +241,6 @@ public class GameController : MonoBehaviour {
 
     private void SendEmailsAsAppropriate() {
         float secondsIntoGame = totalLevelLength - secondsRemaining;
-        Debug.Log(secondsIntoGame/totalLevelLength);
         if ((secondsIntoGame / totalLevelLength) >= (1.0f/3.0f) && !firstEmailSent) {
             if (OnTrack()) {
                 emailController.AddEmailToInbox(1, true);

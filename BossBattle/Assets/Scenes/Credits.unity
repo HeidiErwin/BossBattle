@@ -396,7 +396,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 47d7222d2eafa9549bdb8af2e83472c8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9d5619c218946b84fa3dd9b6ade772ae, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -485,7 +485,7 @@ MonoBehaviour:
     m_LineSpacing: 2
   m_Text: "Heidi Erwin - Project Lead, Design, Programming\r\nBrendan Le - Gameplay
     Programming\r\nBen Lipkin - Music, SFX\r\nFelipe Ortiz - Character Art\r\nTim
-    Ossowski - Gameplay Programming\r\nDani Smith - UI, Character & Environment Art,
+    Ossowski - Gameplay Programming\r\nDani Smith - Art Lead, UI, Environment Art,
     Design\r\n\n"
 --- !u!222 &651661593
 CanvasRenderer:

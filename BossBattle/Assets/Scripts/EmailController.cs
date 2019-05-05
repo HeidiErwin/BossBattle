@@ -97,4 +97,12 @@ public class EmailController: MonoBehaviour
             Debug.LogError("Invalid Email Number");
         }
     }
+
+    //public GameObject PickRandomEmail(bool isGood) {
+    //    if (isGood) {
+            
+    //    } else {
+
+    //    }
+    //}
 }
